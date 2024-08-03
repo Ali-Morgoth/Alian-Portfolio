@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+
+
+    }
+    
+    body {
+    color: rgb(var(--foreground-rgb));
+    font-family: 'Recoleta', sans-serif;
+    }
+    /* /_responsible for the blue tick when a link is clicked _/ */
+    .menu-effect{
+    left: -0.75rem;
+    top: 0.125rem;
+    z-index: -10;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, #00bcd4, #e91e63);
+    transition-duration: .5s;
+    position: absolute;
+    }
+    
+    /* /_this one here is responsible for the smooth scroll_/ */
+    html {
+    scroll-behavior: smooth;
+    }
+
+
+    /* /_we dnt wanna use webkit scrollbar on a production website _/ */
+    ::-webkit-scrollbar {
+    display: none;
+    }
+    
+    /* /_portfolio details overlay background _/ */
+    .overlay {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(4px); 
+    }
+    
+    @media screen and (max-width:900px) {
+    
+    .ground-color-change{
+    background: linear-gradient(90deg, rgba(238,247,251,1) 55%, rgba(255,255,255,1) 55%);
+    }
+    }
+    
+    @media (max-width:640px) {
+    .my-slider{
+    width: 100% !important;
+    }
+    }
+    
+    @media (max-width:640px) {
+    .my-slider{
+    width: 100% !important;
+    }
+    }
+
+    @media (min-width: 1280px){
+      .headerShow{
+        background-color: #fff;
+        box-shadow: #00D5A4 -1px 25px 50px 10px;
+      }   
+    }
+    @media (max-width: 768px) {
+      .headerShow {
+        display: none;
+      }
+    }
+
+    .cinzel-decorative-black {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 900;
+      font-style: normal;
+    }
+    
+    .about-me-component {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    
+    .bg-gradient-dark {
+      background: 
+        linear-gradient(
+          to top right,
+          #00bcd4 0%,
+          #1f1f1f 20%,  /* Reduce la extensión del azul */
+          #0b0c10 80%,  /* Extiende la zona oscura */
+          #e91e63 100%
+        ),
+        linear-gradient(
+          to bottom left,
+          #e91e63 0%,
+          #1f1f1f 10%,  /* Reduce la extensión del rosa */
+          #0b0c10 80%,  /* Extiende la zona oscura */
+          #00bcd4 100%
+        );
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bg-gradient-dark-inverse {
+      background: 
+        linear-gradient(
+          to bottom right,
+          #00bcd4 0%,
+          #1f1f1f 20%,  /* Reduce la extensión del azul */
+          #0b0c10 80%,  /* Extiende la zona oscura */
+          #e91e63 100%  /* Ajusta la extensión del rosa */
+        ),
+        linear-gradient(
+          to top left,
+          #e91e63 0%,
+          #1f1f1f 5%,  /* Reduce más la extensión del rosa */
+          #0b0c10 80%,  /* Extiende la zona oscura */
+          #00bcd4 100%
+        );
+    }
+    
+
+/*  este background es para hire me   */
+  .bg-gradient-dark-contact {
+      position: relative;
+      z-index: 0;
+      overflow: hidden; /* Asegura que el pseudo-elemento no se desborde */
+  }
+  
+  .bg-gradient-dark-contact::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+          linear-gradient(
+              to top right,
+              #00bcd4 0%,
+              #1f1f1f 20%,
+              #0b0c10 80%,
+              #e91e63 100%
+          ),
+          linear-gradient(
+              to bottom left,
+              #e91e63 0%,
+              #1f1f1f 10%,
+              #0b0c10 80%,
+              #00bcd4 100%
+          );
+      z-index: -1;
+  }
+    
+  /*----------------------------------------------------------------------------*/
+
+
+  
+    .text-gradient {
+      background: linear-gradient(to right, #00bcd4, #e91e63);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.50rem; /* Equivalente a text-4xl en Tailwind */
+      font-weight: bold;
+    }
+    .text-gradient-description {
+      background: linear-gradient(to right, #00bcd4, #e91e63);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 0.9rem; /* Equivalente a text-4xl en Tailwind */
+      font-weight: bold;
+    }
+
+    .text-gradient-title {
+      background: linear-gradient(to right, #00bcd4, #e91e63);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.50rem; /* Equivalente a text-4xl en Tailwind */
+  
+    }
+
+    .text-gradient-title-project {
+      background: linear-gradient(to right, #00bcd4, #e91e63);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.50rem; /* Equivalente a text-4xl en Tailwind */
+      -webkit-text-stroke: 0.4px #fff; /* Borde blanco de 1px */
+      text-stroke: 0.5px #fff; /* Borde blanco de 1px para navegadores que lo soporten */
+    }
+    
+
+
+    .text-gradient-menu {
+    background: linear-gradient(to right, #00bcd4, #e91e63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.50rem; /* Equivalente a text-4xl en Tailwind */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transición suave para el color */
+  }
+
+  .menu-item:hover,
+  .menu-item:focus {
+    color: #DABF28; /* Color al hacer hover o focus */
+  }
+
+  .Diagonal-gradient {
+    background: linear-gradient(to right, #00bcd4, #e91e63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.50rem; /* Equivalente a text-4xl en Tailwind */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transición suave para el color */
+  }
+
+  .menu-item:hover,
+  .menu-item:focus {
+    color: #DABF28; /* Color al hacer hover o focus */
+  }
+
+
+
+  .bg-gradient {
+    background: linear-gradient(to right, #00bcd4, #e91e63);
+  }
+
+
+
+
+    /* menu hamburguesa */
+  .hamburger {
+    width: 30px;
+    height: 4px;
+    background-color: #1f1f1f; /* Color externo */
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  .hamburger-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #00bcd4, #e91e63); /* Relleno interno con gradiente */
+  }
+
+
+  /* transicion de entrada */
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in.active {
+  opacity: 1;
+}
+
+
+.custom-button {
+  --green: #00bcd4; /* Updated green color */
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(0, 188, 212, 0.1) 1%, transparent 40%, transparent 60%, rgba(0, 188, 212, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(0, 188, 212, 0.4), 0 0 9px 3px rgba(0, 188, 212, 0.1); /* Updated box-shadow color */
+}
+
+.custom-button:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(0, 188, 212, 0.6), 0 0 9px 3px rgba(0, 188, 212, 0.2); /* Updated box-shadow color */
+}
+
+.custom-button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform 0.4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(0, 188, 212, 0.1) 40%, rgba(0, 188, 212, 0.1) 60%, transparent 100%);
+}
+
+.custom-button:hover:before {
+  transform: translateX(15em);
+}
+
+
+
+.gradient-border {
+  display: inline-block;
+  border-radius: 20px; /* Radio del borde mínimo */
+  padding: 5px; /* Espacio entre la imagen y el borde */
+  box-shadow: 0 0 0 5px rgba(0, 188, 212, 0.5), 0 0 0 10px rgba(130, 255, 201, 0.5);
+}
+
+
+/*para el boton home  */
+
+.button {
+  --black: #000000;
+  --ch-black: #00bcd4; /* Cambiado a #00bcd4 */
+  --eer-black: #1b1b1b;
+  --night-rider: #2e2e2e;
+  --white: #e91e63; /* Reemplazando el color blanco con #e91e63 */
+  --af-white: #f3f3f3;
+  --ch-white: #e1e1e1;
+  border-radius: 8px;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0px 15px;
+  border: none;
+  color: var(--white); /* Utilizando el color definido */
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  transition-duration: .2s;
+  background-color: var(--ch-black);
+}
+
+.button:before, .button:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, 
+  var(--ch-black), var(--eer-black),
+  var(--night-rider), var(--ch-white), var(--night-rider), 
+	var(--eer-black), var(--ch-black),var(--ch-black));
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  filter: blur(50px);
+}
+
+
+
+
+
