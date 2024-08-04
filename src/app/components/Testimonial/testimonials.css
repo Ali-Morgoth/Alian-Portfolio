@@ -1,8 +1,8 @@
 /* Estilo de la tarjeta */
 .card {
-  --white: hsl(0, 0%, 100%) !important;
-  --black: hsl(240, 15%, 9%) !important;
-  --primary: hsl(189, 92%, 58%) !important;
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(240, 15%, 9%);
+  --primary: hsl(189, 92%, 58%);
 
   position: relative;
   display: flex;

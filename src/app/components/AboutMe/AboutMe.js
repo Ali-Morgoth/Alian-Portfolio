@@ -4,7 +4,7 @@ import { Hind } from "next/font/google";
 import { AboutData } from "@/app/data";
 import Image from "next/image";
 
-import "./AboutMe.module.css";
+import "./AboutMe.css";
 import "../../globals.css";
 
 const hind = Hind({
@@ -227,11 +227,11 @@ export default function AboutMe() {
                         </ul>
                       </section>
                       <div
-                        className={`absolute perspective-500 -top-7 sm:top-30 right-0 sm:-right-20 card ${
+                        className={`absolute perspective-500 -top-7 sm:top-30 right-0 sm:-right-20 AboutMeCard ${
                           isFlipped ? "flipped" : ""
                         }`}
                       >
-                        <div className="card-inner">
+                        <div className="AboutMeCard-inner">
                           <div className="rounded-2xl cursor-pointer text-7xl xl:text-9xl font-recoletaBlack text-white bg-gradient p-5 xl:p-8 w-28 h-28 xl:w-48 xl:h-48 transform transition duration-500 transform-preserve -rotate-6 transform-preserve">
                             <span className="text-2xl xl:text-6xl mr-2 sm:mr-3">
                               *
