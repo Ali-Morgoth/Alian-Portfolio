@@ -165,7 +165,7 @@ export default function DiagonalDrawer({
             
                 <a
                   target="blank"
-                  href="git"
+                  href="https://github.com/Ali-Morgoth"
                   className="text-gray-300 hover:text-[#00bcd4] transition-colors duration-3000"
                 >
                   <svg
