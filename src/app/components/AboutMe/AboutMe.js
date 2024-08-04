@@ -4,7 +4,7 @@ import { Hind } from "next/font/google";
 import { AboutData } from "@/app/data";
 import Image from "next/image";
 
-import "./AboutMe.css";
+import "./AboutMe.module.css";
 import "../../globals.css";
 
 const hind = Hind({
