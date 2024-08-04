@@ -147,6 +147,13 @@ export const DataArray = [
 
     images: ["/folilChoyun.webp"],
     youtubeLink: "https://www.youtube.com/@folilchoyun/videos", // Add this line
+
+    skill1: "Cubase",
+    skill2: "Mixing Support",
+    skill3: "M-audio",
+    skill4: "Compositor",
+    skill5: "Multi-intrumentalist",
+    skill6: "Guitar Compositions",
   },
   {
     title: "My Portfolio Project using Next.js",
