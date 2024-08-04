@@ -174,7 +174,7 @@ export default function HomeComponent() {
                       hind.className
                     }`}
                   >
-                    Hello there! I'm
+                    Hello there! I&apos;m
                   </p>
 
                   <div

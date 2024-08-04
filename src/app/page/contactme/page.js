@@ -155,7 +155,7 @@ export default function Page() {
                 } flex justify-center text-center mt-[10px] md:w-[700px]`}
               >
                 <p
-                  className="text-[#00bcd4] font-[300] text-center text-xl"
+                  className="text-[#e7ff31] font-[300] text-center text-xl"
                   style={{
                     WebkitTextStrokeWidth: "0.5px",
                     WebkitTextStrokeColor: "white",
@@ -166,7 +166,7 @@ export default function Page() {
                   application?, music production mastering/mixing, digital music
                   distribuitor, advanced guitar lessons, USD/CLP trading brokers
                   and cybersecurity measures... I bring a holistic approach to
-                  meet your needs. Let's connect and explore how I can assist
+                  meet your needs. Let&apos;s connect and explore how I can assist
                   you effectively.
                 </p>
               </div>
@@ -309,7 +309,7 @@ export default function Page() {
               </div>
               <div>
                 <button className="bg-[#48AFDE] text-white mb-[30px] px-4 py-2 hover:bg-[#223740] transition-color rounded-xl">
-                  Let's chat
+                  Let&apos;s chat
                 </button>
               </div>
             </div>

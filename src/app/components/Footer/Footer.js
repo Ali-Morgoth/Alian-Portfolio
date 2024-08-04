@@ -179,7 +179,7 @@ export default function Footer() {
             className={`fade-in btn ${isLoadedTitle ? "active" : ""} `}
           >
             <span className="strong ">
-              You don't know the power of the dark side...
+              You don&apos;t know the power of the dark side...
             </span>
             <div id="container-stars">
               <div id="glow">
