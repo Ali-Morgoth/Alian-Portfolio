@@ -98,3 +98,17 @@
     scroll-snap-align: center;
   }
 }
+
+
+.scroll-button {
+
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 3rem;
+
+
+
+ 
+}
+

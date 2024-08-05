@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { firestore, signInWithGoogle } from '../../lib/firebase';
+import { useState, useEffect, useRef } from 'react';
+import { firestore, signInWithGoogle, signOut, auth } from '../../lib/firebase';
 import { collection, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import '../../globals.css'; // Importar el archivo CSS global
 import './testimonials.css';
@@ -9,7 +9,10 @@ const Testimonials = () => {
   const [user, setUser] = useState(null);
   const [newTestimonial, setNewTestimonial] = useState("");
   const [rating, setRating] = useState("");
-
+  const scrollRef = useRef(null);
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -22,24 +25,23 @@ const Testimonials = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const container = document.querySelector('.testimonials-container');
-      if (container) {
-        container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
-
-        // Reset scroll position to the beginning after reaching the end
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        }
-      }
-    }, 3000); // Ajusta el intervalo según sea necesario
-
-    return () => clearInterval(interval);
+    // Listener para cambios de autenticación
+    const unsubscribe = auth.onAuthStateChanged(setUser);
+    return () => unsubscribe(); // Cleanup subscription on unmount
   }, []);
 
   const handleLogin = async () => {
     const user = await signInWithGoogle();
     setUser(user);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      setUser(null); // Update state to reflect user has signed out
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   };
 
   const handleAddTestimonial = async () => {
@@ -57,6 +59,9 @@ const Testimonials = () => {
       const querySnapshot = await getDocs(collection(firestore, 'testimonials'));
       const testimonialsData = querySnapshot.docs.map(doc => doc.data());
       setTestimonials(testimonialsData);
+
+      // Sign out the user after adding the testimonial
+      await handleLogout();
     }
   };
 
@@ -76,14 +81,55 @@ const Testimonials = () => {
     setRating(Number(e.target.value));
   };
 
+  const handleMouseDown = (e) => {
+    setIsDown(true);
+    const scrollContainer = scrollRef.current;
+    setStartX(e.pageX - scrollContainer.offsetLeft);
+    setScrollLeft(scrollContainer.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDown(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDown(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const scrollContainer = scrollRef.current;
+    const x = e.pageX - scrollContainer.offsetLeft;
+    const walk = (x - startX) * 3; // Ajusta la velocidad del desplazamiento
+    scrollContainer.scrollLeft = scrollLeft - walk;
+  };
+
+  const scrollLeftOne = () => {
+    const scrollContainer = scrollRef.current;
+    scrollContainer.scrollBy({ left: -scrollContainer.clientWidth, behavior: 'smooth' });
+  };
+
+  const scrollRightOne = () => {
+    const scrollContainer = scrollRef.current;
+    scrollContainer.scrollBy({ left: scrollContainer.clientWidth, behavior: 'smooth' });
+  };
+
   return (
     <div className="text-white p-8 ml-2 mt-5 mr-2 rounded-lg" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       <h2 className="text-3xl font-bold mb-6">What people say</h2>
       <div className="testimonials-wrapper">
-        <div className="testimonials-container">
+        <button onClick={scrollLeftOne} className="scroll-button left-button">‹</button>
+        <div 
+          className="testimonials-container"
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        >
           {testimonials.map((testimonial, index) => (
             <div key={index} className="card testimonial-card">
-        
               <div className="p-4 text-center">
                 <img src={testimonial.photoURL} alt={testimonial.name} className="w-16 h-16 rounded-full mx-auto mb-4" />
                 <p className="text-lg font-semibold mb-2">{testimonial.name}</p>
@@ -95,6 +141,7 @@ const Testimonials = () => {
             </div>
           ))}
         </div>
+        <button onClick={scrollRightOne} className="scroll-button right-button">›</button>
       </div>
       {user ? (
         <div className="mt-6">
@@ -121,6 +168,12 @@ const Testimonials = () => {
             className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2"
           >
             Submit
+          </button>
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2 ml-2"
+          >
+            Logout
           </button>
         </div>
       ) : (
