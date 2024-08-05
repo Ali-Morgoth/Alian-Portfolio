@@ -139,7 +139,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     if (isInEmbeddedBrowser()) {
-      setErrorMessage("Para iniciar sesión, por favor abre este enlace en tu navegador web (por ejemplo, Chrome o Safari).");
+      setErrorMessage("¡Tu navegador no es seguro!. Para iniciar sesión y dejar tu testimonio, por favor abre este sitio web en tu navegador web de confianza (por ejemplo, Chrome, Safari, firefox, etc. ). To add your testimonial select a secure browser");
     }
   }, []);
 
