@@ -9,6 +9,7 @@ const Testimonials = () => {
   const [user, setUser] = useState(null);
   const [newTestimonial, setNewTestimonial] = useState("");
   const [rating, setRating] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
   const scrollRef = useRef(null);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -31,8 +32,18 @@ const Testimonials = () => {
   }, []);
 
   const handleLogin = async () => {
-    const user = await signInWithGoogle();
-    setUser(user);
+    try {
+      const user = await signInWithGoogle();
+      setUser(user);
+      setErrorMessage(""); // Clear any previous error message
+    } catch (error) {
+      if (error.code === 'auth/operation-not-allowed' || error.code === 'auth/unauthorized-domain' || error.code === 'auth/web-storage-unsupported') {
+        setErrorMessage("Your browser is not supported. Please use a different browser to sign in.");
+      } else {
+        setErrorMessage("An error occurred during sign-in. Please try again.");
+      }
+      console.error("Error signing in with Google: ", error);
+    }
   };
 
   const handleLogout = async () => {
@@ -114,6 +125,25 @@ const Testimonials = () => {
     const scrollContainer = scrollRef.current;
     scrollContainer.scrollBy({ left: scrollContainer.clientWidth, behavior: 'smooth' });
   };
+ 
+
+  // Detectar si el usuario está en un navegador embebido
+  const isInEmbeddedBrowser = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return (
+      /instagram/i.test(userAgent) ||
+      /FBAN/i.test(userAgent) || // Facebook
+      /FBAV/i.test(userAgent)
+    );
+  };
+
+  useEffect(() => {
+    if (isInEmbeddedBrowser()) {
+      setErrorMessage("Para iniciar sesión, por favor abre este enlace en tu navegador web (por ejemplo, Chrome o Safari).");
+    }
+  }, []);
+
+
 
   return (
     <div className="text-white p-8 ml-2 mt-5 mr-2 rounded-lg" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -177,12 +207,15 @@ const Testimonials = () => {
           </button>
         </div>
       ) : (
-        <button
-          onClick={handleLogin}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-6"
-        >
-          Sign in with Google to add your testimonial
-        </button>
+        <>
+          <button
+            onClick={handleLogin}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-6"
+          >
+            Sign in with Google to add your testimonial
+          </button>
+          {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
+        </>
       )}
     </div>
   );

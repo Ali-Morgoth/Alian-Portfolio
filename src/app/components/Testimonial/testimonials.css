@@ -107,8 +107,10 @@
   cursor: pointer;
   font-size: 3rem;
 
-
-
- 
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
