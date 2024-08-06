@@ -270,13 +270,13 @@ export default function Index({ id, data, DataArray }) {
         </div>
       </div>
 
-      <div className="relative flex bg-accent-color h-48 text-white">
+      <div className="relative flex bg-accent-color h-48">
         <div
           className={`group w-1/2 flex items-center justify-center bg-cover ${hind.className}`}
           style={{ backgroundImage: `url(${DataArray[prev]?.images[0]})` }}
         >
           <a
-            className="flex justify-center group:hover:bg-[#223740] cursor-pointer transition-colors duration-300 bg-[#405B66] bg-opacity-90 items-center w-full h-full"
+            className="flex justify-center group:hover:bg-[#223740] cursor-pointer transition-colors duration-300 bg-[#405B66] bg-opacity-90 items-center w-full h-full text-[#fff]"
             onClick={() => router.push(`/portfoliodetail/${prev}`)}
           >
             <svg
@@ -303,7 +303,7 @@ export default function Index({ id, data, DataArray }) {
           style={{ backgroundImage: `url(${DataArray[next]?.images[0]})` }}
         >
           <a
-            className="flex justify-center group:hover:bg-[#223740] cursor-pointer transition-colors duration-300 bg-[#405B66] bg-opacity-90 items-center w-full h-full"
+            className="flex justify-center group:hover:bg-[#223740] cursor-pointer transition-colors duration-300 bg-[#405B66] bg-opacity-90 items-center w-full h-full text-[#fff]"
             onClick={() => router.push(`/portfoliodetail/${next}`)}
           >
             Next Project
