@@ -17,6 +17,8 @@ const CountriesList = () => {
         const countryData = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          console.log("Document data:", data); // Agregar para verificar los datos
+          
           let countryName;
 
           // Si existe un countrycode, obtenemos el nombre del país utilizando i18n-iso-countries
@@ -69,3 +71,4 @@ const CountriesList = () => {
 };
 
 export default CountriesList;
+
