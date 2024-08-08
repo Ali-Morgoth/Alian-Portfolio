@@ -99,7 +99,7 @@ export const DataArray = [
     title: "Visitor Statistics Project",
     name: "Geolocation App Next.js real time",
     des: "I developed this real-time web application based on Next.js, Firebase, and APIs. The application functions to display the geolocation of visitors to my website. I am continuing to work on improving the system's accuracy from 80% to 100%.",
-    des1: "This project was made using, Reactjs, Nextjs, Firebase, APIs",
+    des1: "This project was made using, Reactjs, Nextjs, Firebase, APIs... (¡VERY IMPORTANT!, If you want to collaborate with this small app and see the real geolocation of your city in the list, please accept the permissions notification and make sure your phone's geolocation icon is active. If you prefer not to share your real geolocation, simply decline the permissions. This app only uses public information about countries. Thanks everyone 😁 )",
     images: ["/geomap.jpg", "/geomap.jpg"],
 
     skill1: "Next.js",
