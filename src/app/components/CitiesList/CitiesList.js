@@ -50,7 +50,7 @@
 
 import { useEffect, useState } from 'react';
 import { firestore } from '../../lib/firebase';
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
 
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
@@ -84,11 +84,24 @@ const CitiesList = () => {
     const saveCityToFirestore = async (city, country) => {
       try {
         const cityRef = collection(firestore, 'cities');
-        await addDoc(cityRef, {
-          city,
-          country,
-          count: 1, // Puedes ajustar la lógica de conteo si es necesario
-        });
+        const q = query(cityRef, where('city', '==', city), where('country', '==', country));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          // If the city exists, update the count
+          const existingCityDoc = querySnapshot.docs[0];
+          const newCount = existingCityDoc.data().count + 1;
+          await updateDoc(doc(firestore, 'cities', existingCityDoc.id), {
+            count: newCount,
+          });
+        } else {
+          // If the city doesn't exist, create a new document
+          await addDoc(cityRef, {
+            city,
+            country,
+            count: 1, // Initial count
+          });
+        }
       } catch (error) {
         console.error('Error saving city to Firestore:', error);
       }
