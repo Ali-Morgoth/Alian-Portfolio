@@ -61,11 +61,11 @@ export default function AboutMe() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => setIsLoadedText1(true), 500);
-            setTimeout(() => setIsLoadedText2(true), 1000);
-            setTimeout(() => setIsLoadedText3(true), 2000);
-            setTimeout(() => setIsLoadedCards(true), 2500);
-            setTimeout(() => setIsLoadedSkills(true), 2600);
+            setTimeout(() => setIsLoadedText1(true), 400);
+            setTimeout(() => setIsLoadedText2(true), 600);
+            setTimeout(() => setIsLoadedText3(true), 800);
+            setTimeout(() => setIsLoadedCards(true), 1000);
+            setTimeout(() => setIsLoadedSkills(true), 1200);
             observer.disconnect();
           }
         });

@@ -32,15 +32,15 @@ export default function Home() {
           if (entry.target === text1Ref.current) {
             setTimeout(() => {
               setIsLoadedText1(true);
-            }, 500);
+            }, 100);
           } else if (entry.target === text2Ref.current) {
             setTimeout(() => {
               setIsLoadedText2(true);
-            }, 1000);
+            }, 200);
           } else if (entry.target === projectsRef.current) {
             setTimeout(() => {
               setIsLoadedProjects(true);
-            }, 2000);
+            }, 300);
           }
         }
       });

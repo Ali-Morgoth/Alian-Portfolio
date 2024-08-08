@@ -64,16 +64,19 @@ const VisitorCounter = () => {
       const endOfLastMonth = getEndOfLastMonth(today);
 
       const lastMonthCount = data.dailyData
-        .filter(entry => new Date(entry.date) >= startOfLastMonth && new Date(entry.date) <= endOfLastMonth)
-        .reduce((acc, val) => acc + val.count, 0);
+        .filter(entry => {
+          const entryDate = new Date(entry.date);
+          return entryDate >= startOfLastMonth && entryDate <= endOfLastMonth;
+        })
+        .reduce((acc, val) => acc + (val.count || 0), 0); // Initialize reduce with 0
 
       setVisits({
-        today: data.dailyData[data.dailyData.length - 1].count,
-        thisWeek: data.dailyData.slice(-7).reduce((acc, val) => acc + val.count, 0),
-        lastWeek: data.dailyData.slice(-14, -7).reduce((acc, val) => acc + val.count, 0),
-        thisMonth: data.dailyData.slice(-30).reduce((acc, val) => acc + val.count, 0),
+        today: data.dailyData[data.dailyData.length - 1].count || 0,
+        thisWeek: data.dailyData.slice(-7).reduce((acc, val) => acc + (val.count || 0), 0),
+        lastWeek: data.dailyData.slice(-14, -7).reduce((acc, val) => acc + (val.count || 0), 0),
+        thisMonth: data.dailyData.slice(-30).reduce((acc, val) => acc + (val.count || 0), 0),
         lastMonth: lastMonthCount,
-        total: data.count,
+        total: data.count || 0,
         dailyData: data.dailyData
       });
     };
@@ -124,9 +127,3 @@ const VisitorCounter = () => {
 };
 
 export default VisitorCounter;
-
-
-
-
-
-
