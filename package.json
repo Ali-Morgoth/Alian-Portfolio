@@ -29,7 +29,8 @@
     "recharts": "^2.12.7",
     "slick": "^1.12.2",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.1.7"
+    "swiper": "^11.1.7",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "eslint": "^8",

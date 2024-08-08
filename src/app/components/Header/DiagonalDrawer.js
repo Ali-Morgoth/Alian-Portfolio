@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import "../../globals.css"
+import Link from "next/link";
 
 export default function DiagonalDrawer({
   isOpen,
@@ -92,7 +93,7 @@ export default function DiagonalDrawer({
 
                 <li className="group my-4 xl:my-4 2xl:my-6 relative">
                   <div className="inline-block relative">
-                    <a
+                    <Link
                       // target="blank"
                       href="/#portfolio"
                       onClick={() => {
@@ -102,7 +103,7 @@ export default function DiagonalDrawer({
                        className="Diagonal-gradient"
                     >
                       Portfolio
-                    </a>
+                    </Link>
                     {selecttedIndex1 === 1 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
                     ) : (
@@ -114,7 +115,7 @@ export default function DiagonalDrawer({
 
                 <li className="group my-4 xl:my-4 2xl:my-6 relative">
                   <div className="inline-block relative">
-                    <a
+                    <Link
                       // target="blank"
                       href="/#about-me-component"
                       onClick={() => {
@@ -124,7 +125,7 @@ export default function DiagonalDrawer({
                        className="Diagonal-gradient"
                     >
                       About Me
-                    </a>
+                    </Link>
                     {selecttedIndex1 === 2 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
                     ) : (
@@ -136,7 +137,7 @@ export default function DiagonalDrawer({
 
                 <li className="group my-4 xl:my-4 2xl:my-6 relative">
                   <div className="inline-block relative">
-                    <a
+                    <Link
                       // target="blank"
                       href="/page/contactme"
                       onClick={() => {
@@ -146,7 +147,7 @@ export default function DiagonalDrawer({
                        className="Diagonal-gradient"
                     >
                       Hire Me
-                    </a>
+                    </Link>
                     {selecttedIndex1 === 3 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
                     ) : (

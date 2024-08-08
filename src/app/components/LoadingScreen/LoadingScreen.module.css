@@ -1,0 +1,111 @@
+/* Estilos para la pantalla de carga */
+.loadingScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Estilo del pseudo-elemento para la imagen de fondo */
+.loadingScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/loader.webp') no-repeat center center;
+  background-size: cover;
+  opacity: 0.3; /* Ajusta la opacidad según sea necesario */
+  z-index: -1; /* Asegúrate de que esté detrás del contenido */
+}
+
+/* Estilo para el fondo con color semi-transparente */
+.loadingScreen {
+  background-color: rgba(31, 31, 31, 0.8); /* Ajusta la opacidad aquí si es necesario */
+}
+
+/* Estilos para el loader */
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px; /* Ajusta el margen inferior */
+  perspective: 780px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #cecece;
+  z-index: 10;
+}
+
+.load-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.load-inner.load-one {
+  left: 0%;
+  top: 0%;
+  border-bottom: 3px solid #fff;
+  animation: rotate1 1.15s linear infinite;
+}
+
+.load-inner.load-two {
+  right: 0%;
+  top: 0%;
+  border-right: 3px solid #fff;
+  animation: rotate2 1.15s 0.1s linear infinite;
+}
+
+.load-inner.load-three {
+  right: 0%;
+  bottom: 0%;
+  border-top: 3px solid #fff;
+  animation: rotate3 1.15s 0.15s linear infinite;
+}
+
+@keyframes rotate1 {
+  0% {
+    transform: rotateX(45deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate3 {
+  0% {
+    transform: rotateX(-60deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(-60deg) rotateY(0deg) rotateZ(360deg);
+  }
+}
+
+/* Estilos para la imagen */
+.image {
+  margin-top: -50px; /* Ajusta el espacio entre el loader y la imagen */
+}

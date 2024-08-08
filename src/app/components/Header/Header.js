@@ -1,43 +1,39 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Drawer from "./DiagonalDrawer";
 import "../Header/DiagonalDrawer.css";
 import Link from "next/link";
-import Image from "next/image";
-import "../../globals.css"
+import { useRouter } from 'next/navigation';
+import "../../globals.css";
 
 export default function Header() {
   const [selectedIndex1, setSelectedIndex1] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoadedMenu, setIsLoadedMenu] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       setIsScrolled(scrollTop > 0);
     };
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const openDrawer = () => {
-    setIsOpen(true);
-  };
-
-
-  const [isLoadedMenu, setIsLoadedMenu] = useState(false);
-  
   useEffect(() => {
-   
     setTimeout(() => {
       setIsLoadedMenu(true);
-    }, 200); 
+    }, 200);
   }, []);
+
+  const handleNavigation = (index, href) => {
+    setSelectedIndex1(index);
+    router.push(href);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <React.Fragment>
@@ -53,14 +49,14 @@ export default function Header() {
         className={`${
           isScrolled ? "headerShow" : ""
         } w-full fixed top-0 z-50 transition-all duration-500`}
-         style={{
-         backgroundColor: isScrolled ? "#1f1f1f" : "transparent",
-         boxShadow: isScrolled ? "#00bcd4   -10px 15px 20px 10px" : "",
+        style={{
+          backgroundColor: isScrolled ? "#1f1f1f" : "transparent",
+          boxShadow: isScrolled ? "#00bcd4 -10px 15px 20px 10px" : "",
         }}
       >
-       <div className="relative">
+        <div className="relative">
           <div
-            onClick={openDrawer}
+            onClick={() => setIsOpen(true)}
             className="z-30 absolute cursor-pointer w-14 h-14 lg:w-24 lg:h-24 flex justify-center items-center rounded-br-3xl"
           >
             <div className="flex flex-col justify-center items-center">
@@ -86,11 +82,8 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${
-                  selectedIndex1 === 0 ? "text-[#DABF28]" : ""
-                } group-hover:text-[#DABF28]`}
-                href="/#home"
-                onClick={() => setSelectedIndex1(0)}
+                className={`menu-item text-gradient-menu ${selectedIndex1 === 0 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                onClick={() => handleNavigation(0, "/#home")}
               >
                 Home
               </a>
@@ -102,11 +95,8 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${
-                  selectedIndex1 === 1 ? "text-[#DABF28]" : ""
-                }  group-hover:text-[#DABF28]`}
-                href="/#portfolio"
-                onClick={() => setSelectedIndex1(1)}
+                className={`menu-item text-gradient-menu ${selectedIndex1 === 1 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                onClick={() => handleNavigation(1, "/#portfolio")}
               >
                 Portfolio
               </a>
@@ -118,13 +108,10 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${
-                  selectedIndex1 === 2 ? "text-[#DABF28]" : ""
-                } group-hover:text-[#DABF28]`}
-                href="/#about-me-component"
-                onClick={() => setSelectedIndex1(2)}
+                className={`menu-item text-gradient-menu ${selectedIndex1 === 2 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                onClick={() => handleNavigation(2, "/#about-me-component")}
               >
-                AboutMe
+                About Me
               </a>
             </li>
             <li className="group text-2xl relative font-bold mr-20">
@@ -134,13 +121,11 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <Link
-                className={`menu-item text-gradient-menu ${
-                  selectedIndex1 === 3 ? "text-[#DABF28]" : ""
-                } group-hover:text-[#DABF28]`}
+                className={`menu-item text-gradient-menu ${selectedIndex1 === 3 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
                 href="/page/contactme"
-                onClick={() => setSelectedIndex1(3)}
+                onClick={() => handleNavigation(3, "/page/contactme")}
               >
-                Hire me
+                Hire Me
               </Link>
             </li>
           </ul>

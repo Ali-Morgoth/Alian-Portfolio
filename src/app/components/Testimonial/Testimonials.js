@@ -197,7 +197,7 @@ const Testimonials = () => {
             onClick={handleAddTestimonial}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2"
           >
-            Submit
+            Send
           </button>
           <button
             onClick={handleLogout}

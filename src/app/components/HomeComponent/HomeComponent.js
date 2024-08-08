@@ -213,8 +213,8 @@ export default function HomeComponent() {
                       Projects
                     </a>
                     <a
-                      href="cv_alian_1.pdf"
-                      download="cv_alian_1.pdf"
+                      href="cv_alian.pdf"
+                      download="cv_alian.pdf"
                       className={`fade-in ${
                         isLoadedBtn2 ? "active" : ""
                       } cursor-pointer inline-block bg-[#e91e63] transition-all duration-300 ease-in-out rounded-lg text-white py-3 px-8 lg:px-10 font-bold uppercase md:py-2 lg:py-3 md:text-xs lg:text-base hover:bg-[#000000] hover:show-lg transform hover:translate-y-1 button ${
