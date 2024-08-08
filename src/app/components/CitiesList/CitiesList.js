@@ -50,7 +50,7 @@
 
 import { useEffect, useState } from 'react';
 import { firestore } from '../../lib/firebase';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc } from 'firebase/firestore';
 
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
@@ -81,6 +81,19 @@ const CitiesList = () => {
       return () => unsubscribe();
     };
 
+    const saveCityToFirestore = async (city, country) => {
+      try {
+        const cityRef = collection(firestore, 'cities');
+        await addDoc(cityRef, {
+          city,
+          country,
+          count: 1, // Puedes ajustar la lógica de conteo si es necesario
+        });
+      } catch (error) {
+        console.error('Error saving city to Firestore:', error);
+      }
+    };
+
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -95,7 +108,10 @@ const CitiesList = () => {
               .then((data) => {
                 const city =
                   data.address.city || data.address.town || data.address.village;
+                const country = data.address.country;
+
                 setUserCity(city);
+                saveCityToFirestore(city, country); // Guardar la ciudad detectada en Firestore
               })
               .catch((err) => {
                 console.error('Error fetching city from coordinates:', err);
@@ -119,7 +135,11 @@ const CitiesList = () => {
       try {
         const response = await fetch(`https://ipinfo.io?token=4f52d2956beaa7`);
         const data = await response.json();
-        setUserCity(data.city);
+        const city = data.city;
+        const country = data.country;
+
+        setUserCity(city);
+        saveCityToFirestore(city, country); // Guardar la ciudad detectada por IP en Firestore
       } catch (error) {
         console.error('Failed to get geolocation from IP:', error);
         setError('Failed to get city from IP.');
@@ -168,3 +188,4 @@ const CitiesList = () => {
 };
 
 export default CitiesList;
+
