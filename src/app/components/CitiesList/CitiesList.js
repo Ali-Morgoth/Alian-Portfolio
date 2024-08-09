@@ -114,8 +114,11 @@ const CitiesList = () => {
         const city = data.city;
         const country = data.country;
 
-        setUserCity(city);
-        saveCityToFirestore(city, country); // Guarda la ciudad detectada por IP en Firestore
+        // Solo guardar la ciudad si aún no se ha guardado otra ciudad
+        if (!userCity) {
+          setUserCity(city);
+          saveCityToFirestore(city, country); // Guarda la ciudad detectada por IP en Firestore
+        }
       } catch (error) {
         console.error('Failed to get geolocation from IP:', error);
         setError('Failed to get city from IP.');
@@ -138,6 +141,7 @@ const CitiesList = () => {
                   data.address.city || data.address.town || data.address.village;
                 const country = data.address.country;
 
+                // Guardar solo la ciudad detectada por geolocalización
                 setUserCity(city);
                 saveCityToFirestore(city, country); // Guarda la ciudad detectada por geolocalización en Firestore
               })
@@ -149,7 +153,7 @@ const CitiesList = () => {
           (error) => {
             console.error('Error getting location:', error);
             setError('Location access denied.');
-            // Solo si la geolocalización falla o es denegada, entonces usa la IP pública
+            // Si la geolocalización falla o es denegada, usa la IP pública
             getCityFromIP();
           }
         );
