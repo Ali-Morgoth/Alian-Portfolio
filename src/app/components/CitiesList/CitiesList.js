@@ -135,12 +135,12 @@ const CitiesList = () => {
             console.error('Error getting location:', error);
             setError('Location access denied.');
             // Fallback to IP-based location if geolocation is denied
-            getCityFromIP();
+            getCityFromIP(); // Solo ejecuta si la geolocalización es denegada
           }
         );
       } else {
         console.log('Geolocation is not supported by this browser.');
-        getCityFromIP(); // Fallback to IP-based location
+        getCityFromIP(); // Solo ejecuta si la geolocalización no está soportada
       }
     };
 
@@ -201,4 +201,3 @@ const CitiesList = () => {
 };
 
 export default CitiesList;
-
