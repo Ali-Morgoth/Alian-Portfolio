@@ -55,7 +55,7 @@ import { collection, onSnapshot, addDoc, query, where, getDocs, updateDoc, doc }
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
   const [userCity, setUserCity] = useState(null);
-  const [locationChecked, setLocationChecked] = useState(false); // Bandera para evitar doble ejecución
+  const [locationChecked, setLocationChecked] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -89,40 +89,20 @@ const CitiesList = () => {
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-          // Si la ciudad existe, actualiza el conteo
           const existingCityDoc = querySnapshot.docs[0];
           const newCount = existingCityDoc.data().count + 1;
           await updateDoc(doc(firestore, 'cities', existingCityDoc.id), {
             count: newCount,
           });
         } else {
-          // Si la ciudad no existe, crea un nuevo documento
           await addDoc(cityRef, {
             city,
             country,
-            count: 1, // Conteo inicial
+            count: 1,
           });
         }
       } catch (error) {
         console.error('Error saving city to Firestore:', error);
-      }
-    };
-
-    const getCityFromIP = async () => {
-      try {
-        const response = await fetch(`https://ipinfo.io?token=4f52d2956beaa7`);
-        const data = await response.json();
-        const city = data.city;
-        const country = data.country;
-
-        // Solo guardar la ciudad si aún no se ha guardado otra ciudad y no se ha comprobado la ubicación
-        if (!userCity && !locationChecked) {
-          setUserCity(city);
-          saveCityToFirestore(city, country); // Guarda la ciudad detectada por IP en Firestore
-        }
-      } catch (error) {
-        console.error('Failed to get geolocation from IP:', error);
-        setError('Failed to get city from IP.');
       }
     };
 
@@ -142,33 +122,27 @@ const CitiesList = () => {
                   data.address.city || data.address.town || data.address.village;
                 const country = data.address.country;
 
-                // Guardar solo la ciudad detectada por geolocalización si no se ha guardado otra ciudad
                 if (!userCity && !locationChecked) {
                   setUserCity(city);
-                  saveCityToFirestore(city, country); // Guarda la ciudad detectada por geolocalización en Firestore
+                  saveCityToFirestore(city, country);
                 }
-                setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
+                setLocationChecked(true);
               })
               .catch((err) => {
                 console.error('Error fetching city from coordinates:', err);
                 setError('Failed to get precise location.');
-                setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
-                // Si hay un error, usa la IP pública
-                getCityFromIP();
+                setLocationChecked(true);
               });
           },
           (error) => {
             console.error('Error getting location:', error);
             setError('Location access denied.');
-            setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
-            // Si la geolocalización falla o es denegada, usa la IP pública
-            getCityFromIP();
+            setLocationChecked(true);
           }
         );
       } else {
         console.log('Geolocation is not supported by this browser.');
-        setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
-        getCityFromIP(); // Fallback to IP-based location
+        setLocationChecked(true);
       }
     };
 
