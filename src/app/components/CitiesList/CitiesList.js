@@ -55,6 +55,7 @@ import { collection, onSnapshot, addDoc, query, where, getDocs, updateDoc, doc }
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
   const [userCity, setUserCity] = useState(null);
+  const [locationChecked, setLocationChecked] = useState(false); // Bandera para evitar doble ejecución
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -114,8 +115,8 @@ const CitiesList = () => {
         const city = data.city;
         const country = data.country;
 
-        // Solo guardar la ciudad si aún no se ha guardado otra ciudad
-        if (!userCity) {
+        // Solo guardar la ciudad si aún no se ha guardado otra ciudad y no se ha comprobado la ubicación
+        if (!userCity && !locationChecked) {
           setUserCity(city);
           saveCityToFirestore(city, country); // Guarda la ciudad detectada por IP en Firestore
         }
@@ -141,24 +142,32 @@ const CitiesList = () => {
                   data.address.city || data.address.town || data.address.village;
                 const country = data.address.country;
 
-                // Guardar solo la ciudad detectada por geolocalización
-                setUserCity(city);
-                saveCityToFirestore(city, country); // Guarda la ciudad detectada por geolocalización en Firestore
+                // Guardar solo la ciudad detectada por geolocalización si no se ha guardado otra ciudad
+                if (!userCity && !locationChecked) {
+                  setUserCity(city);
+                  saveCityToFirestore(city, country); // Guarda la ciudad detectada por geolocalización en Firestore
+                }
+                setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
               })
               .catch((err) => {
                 console.error('Error fetching city from coordinates:', err);
                 setError('Failed to get precise location.');
+                setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
+                // Si hay un error, usa la IP pública
+                getCityFromIP();
               });
           },
           (error) => {
             console.error('Error getting location:', error);
             setError('Location access denied.');
+            setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
             // Si la geolocalización falla o es denegada, usa la IP pública
             getCityFromIP();
           }
         );
       } else {
         console.log('Geolocation is not supported by this browser.');
+        setLocationChecked(true); // Marcar que la ubicación ha sido comprobada
         getCityFromIP(); // Fallback to IP-based location
       }
     };
