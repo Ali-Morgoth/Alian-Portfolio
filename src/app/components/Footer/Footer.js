@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Accordian from "./Accordian";
 import VisitorCounter from "../VisitorCounter/VisitorCounter";
 import VaderComponent from "./VaderComponent";
+import Image from 'next/image';
 import "./vader.css";
 import "./darkside.css";
 
@@ -14,14 +15,7 @@ export default function Footer() {
     "HR Consulting",
     "SEO Optimization",
   ];
-  const company = ["About", "Meet the Team", "Accounts Review"];
-  const helping = ["Contact", "FAQs", "Live Chat"];
-  const legal = [
-    "Accessibility",
-    "Returns Policy",
-    "Refund Policy",
-    " Hiring Statistics",
-  ];
+
 
   const [isCardVisible, setIsCardVisible] = useState(false);
   const toggleCardVisibility = () => {
@@ -36,6 +30,14 @@ export default function Footer() {
   const [isLoadedVisitor, setIsLoadedVisitor] = useState(false);
   const [isLoadedText3, setIsLoadedText3] = useState(false);
   const [isLoadedSocialMedias, setIsLoadedSocialMedias] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const imageRefs = useRef([]);
+
+
+
+
+
 
   const titleRef = useRef(null);
   const vaderRef = useRef(null);
@@ -139,6 +141,48 @@ export default function Footer() {
     };
   }, []);
 
+  // Función que se ejecuta al hacer clic en el botón
+  // const handleButtonClick = () => {
+  //   setIsImageVisible(true);
+  // };
+  
+ 
+  useEffect(() => {
+    if (isImageVisible) {
+      let currentIndex = 0;
+      const imageSequence = [
+        "/rayo1.png",
+        "/rayo2.png",
+        "/rayo3.png"
+      ];
+
+      const showImage = () => {
+        imageRefs.current.forEach((img, index) => {
+          img.style.display = index === currentIndex ? 'block' : 'none';
+        });
+        currentIndex = (currentIndex + 1) % imageSequence.length;
+      };
+
+      showImage();
+      const interval = setInterval(showImage, 2000); // Change image every 2 seconds
+
+      setTimeout(() => {
+        clearInterval(interval);
+        setIsImageVisible(false);
+        setIsButtonDisabled(false);
+      }, 6000); // Total time for showing images
+
+      return () => clearInterval(interval);
+    }
+  }, [isImageVisible]);
+
+  const handleButtonClick = () => {
+    if (isButtonDisabled) return;
+    setIsButtonDisabled(true);
+    setIsImageVisible(true);
+  };
+
+  
   return (
     <footer className="relative" id="Footer">
       <div className="firefly-container absolute inset-0 z-0">
@@ -154,7 +198,8 @@ export default function Footer() {
             opacity: "95%",
           }}
         />
-
+        
+     
         <div className="firefly"></div>
         <div className="firefly"></div>
         <div className="firefly"></div>
@@ -174,10 +219,13 @@ export default function Footer() {
       {/* Contenido del footer */}
       <div className="relative z-10">
         <div className="flex justify-center pt-20">
-          <button
+          
+          <button  
+            onClick={handleButtonClick}
+            disabled={isButtonDisabled}
             ref={titleRef}
             className={`fade-in btn ${isLoadedTitle ? "active" : ""} `}
-          >
+          > 
             <span className="strong ">
               You don&apos;t know the power of the dark side
             </span>
@@ -189,6 +237,69 @@ export default function Footer() {
             </div>
           </button>
         </div>
+        {/* {isImageVisible && (
+          <div className="rayo-container absolute flex top-0 left-24 z-50 space-x-4 justify-center  ml-20 ">
+            <Image
+              src="/rayo.png"
+              alt="Rayo"
+              width={200}
+              height={800}
+               className="object-cover z-50 rayo-1"
+               
+            />
+            <Image
+              src="/rayo2.png"
+              alt="Rayo2"
+              width={300}
+              height={800}
+              className="object-fill"
+             
+            />
+            <Image
+              src="/rayo3.png"
+              alt="Rayo 3"
+              width={300}
+              height={800}
+              className="object-fill"
+              
+            />
+          </div>
+        )} */}
+
+{isImageVisible && (
+  <div className="rayo-container absolute flex top-0 z-50 gap-30 lg:gap-50">
+    <div className="image-wrapper">
+      <img
+        ref={el => (imageRefs.current[2] = el)}
+        src="/rayo3.png"
+        alt="Rayo"
+        width={200}
+        height={800}
+        className="rayo-img lg:h-[700px]"
+      />
+    </div>
+    <div className="image-wrapper lg:ml-[200px]">
+      <img
+        ref={el => (imageRefs.current[0] = el)}
+        src="/rayo2.png"
+        alt="Rayo"
+        width={200}
+        height={1200}
+        className="rayo-img lg:h-[400px]"
+      />
+    </div>
+    <div className="image-wrapper lg:ml-[100px]">
+      <img
+        ref={el => (imageRefs.current[1] = el)}
+        src="/rayo3.png"
+        alt="Rayo"
+        width={200}
+        height={800}
+        className="rayo-img lg:h-[500px]"
+      />
+    </div>
+  </div>
+)}
         <div
           id="vader"
           ref={vaderRef}
@@ -206,7 +317,7 @@ export default function Footer() {
             ref={text1Ref}
             className={`fade-in ${
               isLoadedText1 ? "active" : ""
-            } text-[#e91e63] flex justify-center font-extra-bold uppercase text-4xl`}
+            } text-[#e91e63] flex justify-center font-extra-bold uppercase text-1xl`}
           >
             Visitors
           </p>
@@ -216,7 +327,7 @@ export default function Footer() {
               isLoadedText2 ? "active" : ""
             } text-gradient-description flex justify-center text-1xl`}
           >
-            Check my Nextjs/Firebase visitor component!
+                Check out my real-time visitor counter app!
           </p>
           <div className="flex justify-center lg:justify-center w-full">
             <div className="w-full lg:w-[80%]">

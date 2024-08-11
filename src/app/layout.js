@@ -1,33 +1,8 @@
-
-// src/app/layout.js
-// import "./globals.css";
-// import ClientLayout from './ClientLayout';
-// import { LoadingProvider } from '../app/Context/LoadingContext';
-
-// export const metadata = {
-//   title: "Alian Andahur",
-//   description: "Discover my digital and musical skills",
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body>
-//         <LoadingProvider>
-//           <ClientLayout>
-//             {children}
-//           </ClientLayout>
-//         </LoadingProvider>
-//       </body>
-//     </html>
-//   );
-// }
-
 // src/app/layout.js
 import "./globals.css";
 import ClientLayout from './ClientLayout';
 import { LoadingProvider } from '../app/Context/LoadingContext';
-import Head from 'next/head'; // Importa el componente Head
+import Head from 'next/head';
 
 export const metadata = {
   title: "Alian Andahur",
@@ -36,20 +11,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" translate="no"> {/* Evita la traducción automática */}
       <Head>
-        <meta name="google" content="notranslate" />
+        <meta name="google" content="notranslate" /> {/* Para Google */}
+        <meta name="robots" content="notranslate" /> {/* Para otros motores de búsqueda */}
       </Head>
       <body>
         <LoadingProvider>
           <ClientLayout>
-            {children}
+            <div translate="no"> {/* Evita la traducción automática en este contenido */}
+              {children}
+            </div>
           </ClientLayout>
         </LoadingProvider>
       </body>
     </html>
   );
 }
-
 
 

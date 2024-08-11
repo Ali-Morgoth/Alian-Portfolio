@@ -150,19 +150,34 @@
   }
 
 
+  /*CSS para los rayos*/
+  .rayo-container {
+    position: absolute;
+    top: 0;
+    width: 1100px;
+    z-index: 50;
+    display: flex;
+    gap: 30px; /* Ajusta el espacio entre las imágenes según sea necesario */
+    height: 400px;
+  }
+  
+  .rayo-img {
+    object-fit: cover;
+    z-index: 50;
+    margin-right: 20px; /* Ajusta el espacio entre las imágenes */
+    position: absolute;
+    height: 400px;
+  }
+  
+/* Contenedor individual para cada imagen */
+.image-wrapper {
+  position: relative;
+  width: 200px; /* Ajusta según el tamaño de la imagen */
+  height: 800px; /* Ajusta según el tamaño de la imagen */
+  overflow: hidden;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -180,7 +195,7 @@
 
 
   
-
+/*CSS para los fireflies*/
   .firefly-container {
   position: absolute;
   z-index: 1; /* Asegura que los fireflies estén por encima del contenido del footer */
