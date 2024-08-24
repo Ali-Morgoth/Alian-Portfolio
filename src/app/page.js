@@ -5,6 +5,8 @@ import { Hind } from "next/font/google";
 import MySlider from "./components/SliderCard/MySlider";
 import AboutMe from "./components/AboutMe/AboutMe";
 import CallToAction from "./components/CallToAction/CallToAction";
+import translations from './translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../app/Context/LanguageContext';
 import './globals.css'
 
 const hind = Hind({
@@ -16,6 +18,7 @@ export default function Home() {
   const [isLoadedText1, setIsLoadedText1] = useState(false);
   const [isLoadedText2, setIsLoadedText2] = useState(false);
   const [isLoadedProjects, setIsLoadedProjects] = useState(false);
+  const { language } = useLanguage(); // Obtener el idioma desde el contexto
 
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
@@ -69,19 +72,13 @@ export default function Home() {
                 className={`fade-in ${isLoadedText1 ? "active" : ""} text-gradient-title md:pl-[80px] px-5 font-extrabold`}
                 style={{ paddingTop: "30px" }}
               >
-                Latest Projects
+                {translations[language].projects.latest_projects}
               </p>
               <p
                 ref={text2Ref}
                 className={`fade-in ${isLoadedText2 ? "active" : ""} text-gradient-description max-w-2xl md:pl-[80px] px-5 font-[300] text-[18px] mb-3 leading-8 mt-5 ${hind.className}`}
               >
-                Welcome to my portfolio! Here you will find a showcase of my most
-                recent work as a web and mobile developer, as well as a music
-                producer. Discover innovative projects where I combine technology
-                and creativity, developing modern applications and websites.
-                Additionally, explore my talent in music production through
-                compositions and productions. Immerse yourself in my professional
-                and artistic world!
+                {translations[language].projects.welcome_message}
               </p>
             </div>
           </div>

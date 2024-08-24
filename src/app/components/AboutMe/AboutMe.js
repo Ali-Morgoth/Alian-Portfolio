@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Hind } from "next/font/google";
 import { AboutData } from "@/app/data";
 import Image from "next/image";
+import translations from "../../translations.json"; // Importar el archivo de traducciones
+import { useLanguage } from "../../Context/LanguageContext"; // Importar el hook de idioma
 
 import "./AboutMe.css";
 import "../../globals.css";
@@ -17,6 +19,7 @@ export default function AboutMe() {
   const [isFaded, setIsFaded] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [mapData, setMapData] = useState(AboutData[0]);
+  const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
 
   const myFunctions = (data) => {
     setIsFlipped(false);
@@ -95,14 +98,14 @@ export default function AboutMe() {
                   isLoadedText1 ? "active" : ""
                 } relative font-recoletaBlack text-5xl text-gradient-title mb-5 -mt-40 md:px-24 px-5`}
               >
-                About My Self
+                {translations[language].aboutme.title}
               </h1>
               <h4
                 className={`fade-in ${
                   isLoadedText2 ? "active" : ""
                 } text-gradient relative w-full font-[300] md:w-3/4 lg:w-2/3 xl:w-1/2 font-recoleta text-2xl mb-10 px-5 md:px-24`}
               >
-                Knack of Building digital solutions
+                {translations[language].aboutme.subtitle}
               </h4>
               <section
                 className={`fade-in ${
@@ -112,34 +115,17 @@ export default function AboutMe() {
                 <p
                   className={`w-full lg:w-1/3 text-gradient-description mr-0 mb-5 lg:mr-4 font-[200] ${hind.className}`}
                 >
-                  My name is Alian. I am a professional and enthusiastic
-                  full-stack developer with a degree in programming and systems
-                  analysis. I am actively engaged in both web and mobile
-                  development, continually learning new concepts and
-                  technologies to achieve more agile and intuitive results. I am
-                  dedicated to staying fluid and adaptable to new situations,
-                  ensuring that I deliver the best possible results.
+                  {translations[language].aboutme.text1}
                 </p>
                 <p
                   className={`w-full lg:w-1/3 text-gradient-description mr-0 mb-5 lg:mr-4 font-[200] ${hind.className}`}
                 >
-                  As a music producer and musician, I have gained extensive
-                  experience since I began in this field. I have participated in
-                  multiple musical performances at various festivals and events.
-                  I have also been involved in several compositions and
-                  professional recordings, some of significant magnitude. One of
-                  the projects for which I am the producer and composer won the
-                  Pulsar Award 2024, the highest award in Chilean music.
+                  {translations[language].aboutme.text2}
                 </p>
                 <p
                   className={`w-full lg:w-1/3 text-gradient-description mr-0 mb-5 lg:mr-4 font-[200] ${hind.className}`}
                 >
-                  I am an enthusiast of cybersecurity, constantly reinforcing my
-                  knowledge about ethical hacking and AI tools. I am self-taught
-                  in video and image editing to provide digital solutions,
-                  continually exploring the world of trading, and I have been
-                  assigned as an instructor in various IT, cultural and music
-                  projects.
+                  {translations[language].aboutme.text3}
                 </p>
               </section>
             </div>
@@ -209,9 +195,9 @@ export default function AboutMe() {
                         }`}
                       >
                         <p
-                          className={`text-gradient ${hind.className} ml-10 text-sm md:text-lg lg:text-xl transition duration-500 transform opacity-100 undefined undefined`}
+                          className={`text-xs sm:text-sm text-[#fff] md:text-lg lg:text-xl ${hind.className} ml-10 transition duration-500 transform opacity-100`}
                         >
-                          My skills as
+                          {translations[language].aboutme.skillsTitle}
                         </p>
                         <h2 className="font-recoletaBold text-[#00bcd4] ml-10 text-2xl md:text-3xl lg:text-3xl mb-6 w-36 md:w-44 lg:w-56 transition duration-500 transform opacity-100 undefined undefined">
                           {mapData?.title}

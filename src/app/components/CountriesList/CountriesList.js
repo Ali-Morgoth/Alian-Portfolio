@@ -3,12 +3,15 @@ import { firestore } from "../../lib/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; //importar contexto de traducciones
 
 // Registrar el locale inglés para i18n-iso-countries
 countries.registerLocale(enLocale);
 
 const CountriesList = () => {
   const [countriesData, setCountriesData] = useState([]);
+  const { language } = useLanguage(); // Obtener el idioma desde el contexto
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -47,10 +50,10 @@ const CountriesList = () => {
   }, []);
 
   return (
-    <div className="p-4 w-full max-w-md mx-auto my-10 bg-white rounded-lg shadow-lg border-2 border-gray-300 mt-2 cursor-pointer hover:bg-[#476571] hover:shadow-xl hover:-translate-y-2 transform transition duration-500">
+    <div className="p-4 w-[300px] max-w-md mx-auto my-10 bg-white rounded-lg shadow-lg border-2 border-gray-300 mt-2 cursor-pointer hover:bg-[#476571] hover:shadow-xl hover:-translate-y-2 transform transition duration-500">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-sm font-sans">Top Countries</h2>
-        <span className="text-sm font-sans ml-16 text-[#e91e63]">Visitors</span>
+        <h2 className="text-sm font-sans">{translations[language].countries.top}</h2>
+        <span className="text-sm font-sans ml-16 text-[#e91e63]">{translations[language].countries.visits}</span>
       </div>
       <ul className="max-h-32 overflow-y-auto">
         {countriesData.map((country, index) => (

@@ -1,0 +1,313 @@
+{
+    "en": {
+   
+      "header": {
+        "home": "Home",
+        "portfolio": "Portfolio",
+        "about_me": "About Me",
+        "hire_me": "Hire Me",
+        "language": "Español"
+      },
+      "diagonal": {
+        "home": "Home",
+        "portfolio": "Portfolio",
+        "about_me": "About Me",
+        "hire_me": "Hire Me",
+        "follow_me": "Follow Me Around"
+      },
+      "home": {
+        "greeting": "Hello there! I'm",
+        "role": "Fullstack Developer, Music Producer, Musician, Trader & an Ethical Hacker",
+        "projects_button": "Projects",
+        "resume_button": "My resume"
+      },
+      "projects": {
+        "latest_projects": "Latest Projects",
+        "welcome_message": "Welcome to my portfolio! Here you will find a showcase of my most recent work as a web and mobile developer, as well as a music producer. Discover innovative projects where I combine technology and creativity, developing modern applications and websites. Additionally, explore my talent in music production through compositions and productions. Immerse yourself in my professional and artistic world!"
+      },
+      "insideprojects": {
+       "projectSample": "Project Sample",
+       "projectDescriptions": "Project Descriptions",
+       "previousProject": "Previous Project",
+       "nextProject": "Next Project"
+     
+      },
+      "visitor_counter": {
+        "title": "Visitor Statistics Project - Next.js",
+        "name": "Visitor Statistics Project",
+        "description": "I developed this real-time web application based on Next.js, Firebase, and APIs. The application functions to display the geolocation of visitors to my website. I continue to work on improving the accuracy of the system from 80% to 100%.",
+        "description_extra": "This project was made using Reactjs, Nextjs, Firebase, APIs... (VERY IMPORTANT! If you want to collaborate with this little application and see the real geolocation of your city in the list, please accept the permission notification and make sure your phone's geolocation icon is active. If you prefer not to share your real geolocation, just deny the permissions. This application only uses public information about countries. Thanks to everyone 😁 )",
+        "skills": ["Next.js", "Firebase/Firestore", "CSS/Tailwind", "API", "GeoMap", "Json"]
+      },
+      "wechemapu": {
+        "title": "Wechemapu - Por los senderos culturales de la futawillimapu",
+        "name": "Winner LP Pulsar Chile 2024",
+        "description": "I worked on this project as a producer and composer. LP on the recording and remastering of 24 new and old Wechemapu songs. Project winner of the Pulsar Chile 2024 Award, the most important music award in Chile, in the category 'Promotion of Indigenous People's Music'.",
+        "description_extra": "This project was made using Studio One DAW, Cubase DAW, Line6 effects processor, and various studio tools.",
+        "skills": ["Studio One/Cubase", "Line 6", "Pixlr", "Mixing", "Mastering", "Distrokid Distributor"],
+        "youtube_link": "https://www.youtube.com/channel/UCuNpyYVjIY6JDZW-vAYNa-A",
+        "spotify_link": "https://open.spotify.com/intl-es/album/6eVW0cNzFTxJk994DX4dTw"
+      },
+      "ep_production": {
+        "title": "EP Alian Andahur - Mongen Ta Molkun",
+        "name": "EP Mongen Ta Molkun",
+        "description": "I created this project as my first music production: an EP of five instrumental songs where I am both the composer and the producer.",
+        "description_extra": "This project was created to share some ideas I had, not as a commercial product but to realize my first concept of music.",
+        "skills": ["Studio One", "Mixing", "Mastering", "Line 6 Multi-effects", "LTD Guitars", "Ibanez Guitars"],
+        "youtube_link": "https://www.youtube.com/@alianandahur2251/featured"
+      },
+      "folil_choyun": {
+        "title": "LP musical - Folil Choyun",
+        "name": "LP Production Folil Choyun",
+        "description": "This project was created primarily to produce children's music, but the final product attracted listeners of all ages. We built this LP using FONDART resources, and the project leaders were early childhood educators, employees of JUNJI Chile.",
+        "description_extra": "I worked here as a multi-instrumentalist composer for the songs on this album, creating melodies, playing guitar, percussion, wind instruments, and making arrangements.",
+        "skills": ["Cubase", "Mix Support", "M-audio", "Composer", "Multi-instrumentalist", "Guitar Compositions"],
+        "youtube_link": "https://www.youtube.com/@folilchoyun/videos"
+      },
+      "portfolio_project": {
+        "title": "My Portfolio Project using Next.js",
+        "name": "Portfolio Project",
+        "description": "I built this project using Next.js to showcase my different skills as a developer, musician, and music producer.",
+        "description_extra": "I took on the challenge of creating a website like this using the latest updates of Next.js, Tailwind CSS for the front-end and responsive design, Node.js and Firebase for the back-end, and various APIs to integrate functional applications into the site. You can see the results by browsing through the different pages, where you will find my projects, applications, and contact form. I have also added an English and Spanish language function throughout my website, allowing you to select the language. Since browser translations are often very inaccurate, I implemented this feature using my own translations through JSON, JavaScript, and Context, so I recommend using the translation option I've implemented. Thank you for visiting my website!",
+        "skills": ["Next.js", "Javascript", "TailwindCss", "Firebase", "APIs", "Node.js"]
+      },
+      "testimonial_project": {
+        "title": "Testimonial - App",
+        "name": "Share your testimony",
+        "description": "I created my own testimonial project using Next.js, Tailwind CSS, Firebase, Firestore, and Google Auth. You can even log in with your Google account!.",
+        "description_extra": "Normally, when you want to add this type of feature or widget to your website, you have to pay for it. So I decided to create it myself. In this small application, you can find testimonials from people who have worked with me. You can even share your own experience if you have worked with me. Let's get started!.",
+        "skills": ["Next.js", "Tailwind.CSS", "Firebase", "Firestore", "Google Auth", "Javascript"]
+      },
+      "aboutme": {
+        "title": "About My Self",
+        "subtitle": "Knack of Building digital solutions",
+        "text1": "My name is Alian. I am a professional and enthusiastic full-stack developer with a degree in programming and systems analysis. I am actively engaged in both web and mobile development, continually learning new concepts and technologies to achieve more agile and intuitive results. I am dedicated to staying fluid and adaptable to new situations, ensuring that I deliver the best possible results.",
+        "text2": "As a music producer and musician, I have gained extensive experience since I began in this field. I have participated in multiple musical performances at various festivals and events. I have also been involved in several compositions and professional recordings, some of significant magnitude. One of the projects for which I am the producer and composer won the Pulsar Award 2024, the highest award in Chilean music.",
+        "text3": "I am an enthusiast of cybersecurity, constantly reinforcing my knowledge about ethical hacking and AI tools. I am self-taught in video and image editing to provide digital solutions, continually exploring the world of trading, and I have been assigned as an instructor in various IT, cultural and music projects.",
+        "skillsTitle": "My skills as"      
+       },
+      "hireme": {
+        "contactFormTitle": "Contact Form",
+        "hireMeTitle": "Hire Me",
+        "description": "Are you looking for a versatile professional in full-stack/front-end developer, building your next web application?, music production mastering/mixing, digital music distributor, advanced guitar lessons, USD/CLP trading brokers and cybersecurity measures... I bring a holistic approach to meet your needs. Let's connect and explore how I can assist you effectively.",
+        "locationTitle": "Location...",
+        "visitMeAt": "Visit Me At:",
+        "location": "Pualhue San Juan de la Costa / Osorno",
+        "serviceTitle": "Service...",
+        "callMeOn": "Call Me On",
+        "phoneNumber": "Tel: +56965725025",
+        "dropALine": "Drop A Line",
+        "mailAddressTitle": "Mail Address",
+        "email": "alian.andahur.lml@gmail.com",
+        "officeHoursTitle": "Office Hours...",
+        "openingTimeTitle": "Opening Time",
+        "openingTime": "Mon - Fri : 9am - 6pm",
+        "sundayClosed": "Sunday (Closed)",
+        "chatWithLiveTitle": "Chat With Live!",
+        "chatDescription": "Are you looking for a responsible, professional full-stack developer and designer for your website, music producer, trading tips or a guitar teacher? Just leave me a message and tell me how I can help.",
+        "letsChatButton": "Let's Chat",
+        "contact_me_button": "Contact Me",
+        "request_call_back": "Request A Call Back! Feel Free To Reach & Contact Me.",
+        "form_name_placeholder": "Your Name",
+        "form_email_placeholder": "Your Email",
+        "form_phone_placeholder": "Your Phone Number",
+        "form_subject_placeholder": "Subject",
+        "form_message_placeholder": "Your Message",
+        "form_submit_button": "Send Message",
+        "toast_success_message": "Message sent successfully!, Thanks for contacting Alian Andahur",
+        "toast_error_message": "Something went wrong. Please try again."
+      },
+       "footer": {
+        "buttonTitle": "You don't know the power of the dark side",
+        "visitorsText": "Visitors",
+        "visitorCounterText": "Check out my real-time visitor counter app!",
+        "socialMediasText": "Follow Me Around",
+        "footer_copyright": "© 2024 Alian Andahur. Some Rights Reserved."
+      },
+      "visits": {
+        "today": "TODAY",
+        "this_week": "THIS WEEK",
+        "last_week": "LAST WEEK",
+        "this_month": "THIS MONTH",
+        "last_month": "LAST MONTH",
+        "total": "TOTAL"
+      },
+      "testimonials": {
+        "testimonialsTitle": "What people say",
+        "addTestimonialPlaceholder": "Add your testimonial",
+        "selectStarsPlaceholder": "Select stars",
+        "sendButton": "Send",
+        "logoutButton": "Logout",
+        "signInWithGoogleButton": "Sign in with Google to add your testimonial",
+        "errorMessageUnsupportedBrowser": "Your browser is not supported. Please use a different browser to sign in.",
+        "errorMessageSignInFailed": "An error occurred during sign-in. Please try again.",
+        "errorMessageEmbeddedBrowser": "Your browser is not secure! To add your testimonial, please open this website in a trusted web browser (e.g., Chrome, Safari, Firefox, etc.)."
+      },
+      "countries":{
+        "top": "Top Countries",
+        "visits": "Visitors" 
+      },
+      "cities": {
+        "top": "Top Cities",
+        "visits": "Visitors",
+        "city": "Your City"
+      }
+
+
+    },
+    "es": {
+      "header": {
+        "home": "Inicio",
+        "portfolio": "Portafolio",
+        "about_me": "Sobre Mí",
+        "hire_me": "Contáctame",
+        "language": "English"
+      },
+      "diagonal": {
+        "home": "Home",
+        "portfolio": "Portafolio",
+        "about_me": "Sobre mí",
+        "hire_me": "Contáctame",
+        "follow_me": "Sigueme en"
+      },
+      "home": {
+      "greeting": "¡Hola! Soy",
+      "role": "Desarrollador Fullstack, Productor Musical, Músico, Trader & Hacker Ético",
+      "projects_button": "Proyectos",
+      "resume_button": "Currículum"
+    },
+    "projects": {
+      "latest_projects": "Últimos Proyectos",
+      "welcome_message": "¡Bienvenido a mi portafolio! Aquí encontrarás una muestra de mi trabajo más reciente como desarrollador web y móvil, así como productor musical. Descubre proyectos innovadores donde combino tecnología y creatividad, desarrollando aplicaciones y sitios web modernos. Además, explora mi talento en la producción musical a través de composiciones y producciones. ¡Sumérgete en mi mundo profesional y artístico!"
+    },
+    "insideprojects": {
+        "projectSample": "Muestra del proyecto",
+        "projectDescriptions": "Descripción del proyecto",
+        "previousProject": "Proyecto Anterior",
+        "nextProject": "Siguiente Proyecto"
+      
+       },
+      "visitor_counter": {
+        "title": "Visitor Statistics Project - Next.js",
+        "name": "Estadisticas de visitas App",
+        "description": "Desarrollé esta aplicación web en tiempo real basada en Next.js, Firebase y APIs. La aplicación funciona para mostrar la geolocalización de los visitantes de mi sitio web. Continúo trabajando para mejorar la precisión del sistema del 80% al 100%.",
+        "description_extra": "Este proyecto fue realizado utilizando Reactjs, Nextjs, Firebase, APIs... (¡MUY IMPORTANTE! Si deseas colaborar con esta pequeña aplicación y ver la geolocalización real de tu ciudad en la lista, por favor acepta la notificación de permisos y asegúrate de que el icono de geolocalización de tu teléfono esté activo. Si prefieres no compartir tu geolocalización real, simplemente rechaza los permisos. Esta aplicación solo utiliza información pública sobre los países. Gracias a todos 😁 )",
+        "skills": ["Next.js", "Firebase/Firestore", "CSS/Tailwind", "API", "GeoMap", "Json"]
+      },
+      "wechemapu": {
+        "title": "Wechemapu - Por los senderos culturales de la futawillimapu",
+        "name": "LP Ganador Pulsar Chile 2024",
+        "description": "He trabajado en este proyecto como productor y parte compositor. LP sobre la grabación y remasterización de 24 nuevas y antiguas canciones de Wechemapu. Proyecto ganador del Premio Pulsar Chile 2024, el premio de música más importante de Chile, evento realizado en canal de televisión TVN, en la categoría 'Difusión a la música de los pueblos originarios'.",
+        "description_extra": "Este proyecto fue realizado utilizando Studio One DAW, Cubase DAW, procesador de efectos Line6 y diferentes herramientas de estudio.",
+        "skills": ["Studio One/Cubase", "Line 6", "Pixlr", "Mezcla", "Masterización", "Distribuidor Distrokid"],
+        "youtube_link": "https://www.youtube.com/channel/UCuNpyYVjIY6JDZW-vAYNa-A",
+        "spotify_link": "https://open.spotify.com/intl-es/album/6eVW0cNzFTxJk994DX4dTw"
+      },
+      "ep_production": {
+        "title": "EP Alian Andahur - Mongen Ta Molkun",
+        "name": "EP Mongen Ta Molkun",
+        "description": "Creé este proyecto como mi primera producción musical: un EP de cinco canciones instrumentales donde soy tanto el compositor como el productor.",
+        "description_extra": "Este proyecto fue creado para compartir algunas ideas que tenía, no como un producto comercial, sino para realizar mi primer concepto de música.",
+        "skills": ["Studio One", "Mezcla", "Masterización", "Multi-efectos Line 6", "Guitarras LTD", "Guitarras Ibanez"],
+        "youtube_link": "https://www.youtube.com/@alianandahur2251/featured"
+      },
+      "folil_choyun": {
+        "title": "LP musical - Folil Choyun",
+        "name": "LP Producción Folil Choyun",
+        "description": "Este proyecto fue creado principalmente para producir música infantil, pero el producto final atrajo a oyentes de todas las edades. Construimos este LP utilizando recursos de FONDART y las líderes del proyecto fueron educadoras infantiles, empleadas de JUNJI Chile.",
+        "description_extra": "Trabajé aquí como compositor multi-instrumentista para las canciones de este álbum, creando melodías, tocando guitarra, percusión, instrumentos de viento y realizando arreglos.",
+        "skills": ["Cubase", "Soporte de mezcla", "M-audio", "Compositor", "Multi-instrumentista", "Composiciones en guitarra"],
+        "youtube_link": "https://www.youtube.com/@folilchoyun/videos"
+      },
+      "portfolio_project": {
+        "title": "Mi proyecto de portafolio utilizando Next.js",
+        "name": "Proyecto Portafolio",
+        "description": "Construí este proyecto utilizando Next.js para mostrar mis diferentes habilidades como desarrollador, músico y productor musical.",
+        "description_extra": "Asumí el reto de crear un sitio web como este utilizando las últimas actualizaciones de Next.js, Tailwind CSS para el front-end y el diseño responsive, Node.js y Firebase para el back-end, y varias APIs para integrar aplicaciones funcionales al sitio. Puedes ver los resultados navegando por las diferentes páginas, donde encontrarás mis proyectos, aplicaciones y formulario de contacto. También he agregado una función de idioma inglés y español en todo mi sitio web, lo que te permite seleccionar el idioma. Dado que las traducciones de los navegadores suelen ser muy inexactas, implementé esta función utilizando mis propias traducciones a través de JSON, JavaScript y Context, por lo que recomiendo utilizar la opción de traducción que he implementado. ¡Gracias por visitar mi sitio web!",
+        "skills": ["Next.js", "Javascript", "TailwindCss", "Firebase", "APIs", "Node.js", "JSON"]
+      },
+      "testimonial_project": {
+        "title": "Testimonial - App",
+        "name": "Comparte tu testimonio App",
+        "description": "Creé mi propio proyecto de testimonios utilizando Next.js, Tailwind CSS, Firebase, Firestore y Google Auth. ¡Incluso puedes iniciar sesión con tu cuenta de Google!.",
+        "description_extra": "Normalmente, cuando deseas agregar este tipo de característica o widget a tu sitio web, tienes que pagar por ello. Así que decidí crearlo yo mismo. En esta pequeña aplicación, puedes encontrar testimonios de personas que han trabajado conmigo. Incluso puedes compartir tu propia experiencia si has trabajado conmigo. ¡Vamos a empezar!.",
+        "skills": ["Next.js", "Tailwind.CSS", "Firebase", "Firestore", "Google Auth", "Javascript"]
+      },
+      "aboutme": {
+        "title": "Sobre Mí",
+        "subtitle": "Mi habilidad en soluciones digitales",
+        "text1": "Mi nombre es Alian. Soy un desarrollador full-stack profesional y entusiasta con un título en programación y análisis de sistemas. Estoy activamente involucrado en el desarrollo web y móvil, aprendiendo continuamente nuevos conceptos y tecnologías para lograr resultados más ágiles e intuitivos. Me dedico a mantenerme fluido y adaptable a nuevas situaciones, asegurando que entregue los mejores resultados posibles.",
+        "text2": "Como productor musical y músico, he ganado una amplia experiencia desde que comencé en este campo. He participado en múltiples actuaciones musicales en varios festivales y eventos. También he estado involucrado en varias composiciones y grabaciones profesionales, algunas de gran magnitud. Uno de los proyectos para los que soy productor y compositor ganó el Premio Pulsar 2024, el premio más importante de la música chilena.",
+        "text3": "Soy un entusiasta de la ciberseguridad, reforzando constantemente mi conocimiento sobre hacking ético y herramientas de IA. Soy autodidacta en la edición de videos e imágenes para proporcionar soluciones digitales, explorando continuamente el mundo del trading y he sido asignado como instructor en varios proyectos de TI, culturales y musicales.",
+        "skillsTitle": "Mis habilidades en"   
+       },
+       "hireme": {
+       "contactFormTitle": "Formulario de Contacto",
+      "hireMeTitle": "Contáctame",
+      "description": "¿Estás buscando un profesional versátil en desarrollo full-stack/front-end, construyendo tu próxima aplicación web?, producción musical, masterización/mezcla, distribuidor de música digital, lecciones avanzadas de guitarra, brokers de trading USD/CLP y medidas de ciberseguridad... Aporto un enfoque holístico para satisfacer tus necesidades. Conectémonos y exploremos cómo puedo ayudarte de manera efectiva.",
+      "locationTitle": "Ubicación...",
+      "visitMeAt": "Visítame en:",
+      "location": "Pualhue San Juan de la Costa / Osorno",
+      "serviceTitle": "Servicio...",
+      "callMeOn": "Llámame al",
+      "phoneNumber": "Tel: +56965725025",
+      "dropALine": "Déjame un mensaje",
+      "mailAddressTitle": "Dirección de Correo",
+      "email": "alian.andahur.lml@gmail.com",
+      "officeHoursTitle": "Horario de Atención...",
+      "openingTimeTitle": "Horario de Apertura",
+      "openingTime": "Lun - Vie: 9am - 6pm",
+      "sundayClosed": "Domingo (Cerrado)",
+      "chatWithLiveTitle": "¡Chatea en Vivo!",
+      "chatDescription": "¿Buscas un desarrollador full-stack y diseñador profesional y responsable para tu sitio web, productor musical, consejos de trading o un profesor de guitarra? Solo déjame un mensaje y dime cómo puedo ayudarte.",
+      "letsChatButton": "Hablemos",
+      "contact_me_button": "Contáctame",
+       "request_call_back": "¡Solicita Una Llamada! No dudes en contactarme.",
+      "form_name_placeholder": "Tu Nombre",
+      "form_email_placeholder": "Tu Correo Electrónico",
+      "form_phone_placeholder": "Tu Número de Teléfono",
+      "form_subject_placeholder": "Asunto",
+      "form_message_placeholder": "Tu Mensaje",
+      "form_submit_button": "Enviar Mensaje",
+      "toast_success_message": "¡Mensaje enviado con éxito!",
+      "toast_error_message": "Algo salió mal. Por favor, intenta de nuevo."
+      },
+       "footer": {
+        "buttonTitle": "No conoces el poder del lado oscuro",
+        "visitorsText": "Visitantes",
+        "visitorCounterText": "¡Checa mi App contador de visitas en tiempo real!",
+        "socialMediasText": "Sígueme en",
+        "footer_copyright": "© 2024 Alian Andahur. Algunos Derechos Reservados."
+      },
+      "visits": {
+        "today": "HOY",
+        "this_week": "ESTA SEMANA",
+        "last_week": "LA SEMANA PASADA",
+        "this_month": "ESTE MES",
+        "last_month": "EL MES PASADO",
+        "total": "TOTAL"
+      },
+      "testimonials": {
+        "testimonialsTitle": "Qué dice la gente",
+        "addTestimonialPlaceholder": "Añade tu testimonio",
+        "selectStarsPlaceholder": "Seleccionar estrellas",
+        "sendButton": "Enviar",
+        "logoutButton": "Cerrar sesión",
+        "signInWithGoogleButton": "Inicia sesión con Google para añadir tu testimonio",
+        "errorMessageUnsupportedBrowser": "Tu navegador no es compatible. Por favor, usa un navegador diferente para iniciar sesión.",
+        "errorMessageSignInFailed": "Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.",
+        "errorMessageEmbeddedBrowser": "¡Tu navegador no es seguro! Para añadir tu testimonio, por favor abre este sitio web en un navegador web de confianza (por ejemplo, Chrome, Safari, Firefox, etc.)."
+      },
+      "countries":{
+        "top": "Paises",
+        "visits": "Visitas" 
+      },
+      "cities": {
+        "top": "Ciudades",
+        "visits": "Visitas",
+        "city": "Tu ciudad es"
+      }
+
+    }
+  }
+  

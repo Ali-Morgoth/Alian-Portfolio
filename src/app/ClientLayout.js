@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import { useLoading } from '../app/Context/LoadingContext';
+import { LanguageProvider } from '../app/Context/LanguageContext'; // Importa el LanguageProvider
 
 const poppins = LocalFont({
   src: [
@@ -27,11 +28,12 @@ const poppins = LocalFont({
 
 export default function ClientLayout({ children }) {
   const { loading } = useLoading();
-
+  
   if (loading) {
     return <LoadingScreen />;
+  
   }
-
+ 
   return (
     <div className={poppins.className}>
       <Header />

@@ -51,12 +51,17 @@
 import { useEffect, useState } from 'react';
 import { firestore } from '../../lib/firebase';
 import { collection, onSnapshot, addDoc, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; //importar el contexto de traducciones 
 
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
   const [userCity, setUserCity] = useState(null);
   const [locationChecked, setLocationChecked] = useState(false);
   const [error, setError] = useState(null);
+ 
+ 
+  const {language} = useLanguage(); // obtener el idioma desde el contexto 
 
   useEffect(() => {
     const fetchCities = () => {
@@ -151,14 +156,14 @@ const CitiesList = () => {
   }, []);
 
   return (
-    <div className="p-4 w-full max-w-md mx-auto my-10 bg-white rounded-lg shadow-lg border-2 border-gray-300 mt-2 cursor-pointer hover:bg-[#476571] hover:shadow-xl hover:-translate-y-2 transform transition duration-500">
+    <div className="p-4 pb-2 w-[300px] max-w-md mx-auto my-10 bg-white rounded-lg shadow-lg border-2 border-gray-300 mt-2 cursor-pointer hover:bg-[#476571] hover:shadow-xl hover:-translate-y-2 transform transition duration-500">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-sm font-sans">Top Cities</h2>
-        <span className="text-sm font-sans text-[#e91e63]">Visitors</span>
+        <h2 className="text-sm font-sans">{translations[language].cities.top}</h2>
+        <span className="text-sm font-sans text-[#e91e63]">{translations[language].cities.visits}</span>
       </div>
       {userCity && (
         <div className="mb-4 p-2 bg-gray-100 rounded">
-          <strong>Your City:</strong> {userCity}
+          <strong>{translations[language].cities.city}:</strong> {userCity}
         </div>
       )}
       {error && (

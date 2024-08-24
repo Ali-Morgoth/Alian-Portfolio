@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { doc, getDoc, runTransaction, collection } from "firebase/firestore";
 import { firestore } from '../../lib/firebase'; 
 import { LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
 
 // Helper functions to get the start and end dates of this month and last month
 const getStartOfLastMonth = (date) => {
@@ -62,13 +64,14 @@ const VisitorCounter = () => {
       const today = new Date();
       const startOfLastMonth = getStartOfLastMonth(today);
       const endOfLastMonth = getEndOfLastMonth(today);
-
+      
+      // Correcting the last month calculation
       const lastMonthCount = data.dailyData
         .filter(entry => {
           const entryDate = new Date(entry.date);
           return entryDate >= startOfLastMonth && entryDate <= endOfLastMonth;
         })
-        .reduce((acc, val) => acc + (val.count || 0), 0); // Initialize reduce with 0
+        .reduce((acc, val) => acc + (val.count || 0), 0);
 
       setVisits({
         today: data.dailyData[data.dailyData.length - 1].count || 0,
@@ -83,32 +86,35 @@ const VisitorCounter = () => {
 
     incrementVisits();
   }, []);
+ 
+ 
+  const { language } = useLanguage(); // Usar el idioma global del contexto
 
   return (
     <div className="bg-black text-[#e91e63] rounded-lg p-4 w-full">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-4">
         <div className="text-center lg:text-left">
-          <p className="text-sm">TODAY</p>
+          <p className="text-sm">{translations[language].visits.today}</p>
           <p className="text-lg font-bold">{visits.today}</p>
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-sm">THIS WEEK</p>
+          <p className="text-sm">{translations[language].visits.this_week}</p>
           <p className="text-lg font-bold">{visits.thisWeek}</p>
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-sm">LAST WEEK</p>
+          <p className="text-sm">{translations[language].visits.last_week}</p>
           <p className="text-lg font-bold">{visits.lastWeek}</p>
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-sm">THIS MONTH</p>
+          <p className="text-sm">{translations[language].visits.this_month}</p>
           <p className="text-lg font-bold">{visits.thisMonth}</p>
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-sm">LAST MONTH</p>
+          <p className="text-sm">{translations[language].visits.last_month}</p>
           <p className="text-lg font-bold">{visits.lastMonth}</p>
         </div>
         <div className="text-center lg:text-left">
-          <p className="text-sm">TOTAL</p>
+          <p className="text-sm">{translations[language].visits.total}</p>
           <p className="text-lg font-bold">{visits.total}</p>
         </div>
       </div>

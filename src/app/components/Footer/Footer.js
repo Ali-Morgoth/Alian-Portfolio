@@ -3,7 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Accordian from "./Accordian";
 import VisitorCounter from "../VisitorCounter/VisitorCounter";
 import VaderComponent from "./VaderComponent";
-import Image from 'next/image';
+import Image from "next/image";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
 import "./vader.css";
 import "./darkside.css";
 
@@ -15,7 +17,6 @@ export default function Footer() {
     "HR Consulting",
     "SEO Optimization",
   ];
-
 
   const [isCardVisible, setIsCardVisible] = useState(false);
   const toggleCardVisibility = () => {
@@ -32,12 +33,8 @@ export default function Footer() {
   const [isLoadedSocialMedias, setIsLoadedSocialMedias] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
   const imageRefs = useRef([]);
-
-
-
-
-
 
   const titleRef = useRef(null);
   const vaderRef = useRef(null);
@@ -145,20 +142,15 @@ export default function Footer() {
   // const handleButtonClick = () => {
   //   setIsImageVisible(true);
   // };
-  
- 
+
   useEffect(() => {
     if (isImageVisible) {
       let currentIndex = 0;
-      const imageSequence = [
-        "/rayo1.png",
-        "/rayo2.png",
-        "/rayo3.png"
-      ];
+      const imageSequence = ["/rayo1.png", "/rayo2.png", "/rayo3.png"];
 
       const showImage = () => {
         imageRefs.current.forEach((img, index) => {
-          img.style.display = index === currentIndex ? 'block' : 'none';
+          img.style.display = index === currentIndex ? "block" : "none";
         });
         currentIndex = (currentIndex + 1) % imageSequence.length;
       };
@@ -182,7 +174,6 @@ export default function Footer() {
     setIsImageVisible(true);
   };
 
-  
   return (
     <footer className="relative" id="Footer">
       <div className="firefly-container absolute inset-0 z-0">
@@ -191,15 +182,19 @@ export default function Footer() {
         <img
           src="/mustafar.jpg"
           alt="Background"
-          className="w-full h-full object-cover shadow-top "
+          className="w-full h-full object-cover shadow-top z-10"
           style={{
             objectPosition: "center",
             pointerEvents: "none",
             opacity: "95%",
+      
           }}
         />
-        
-     
+
+        <div className="firefly"></div>
+        <div className="firefly"></div>
+        <div className="firefly"></div>
+        <div className="firefly"></div>
         <div className="firefly"></div>
         <div className="firefly"></div>
         <div className="firefly"></div>
@@ -217,17 +212,16 @@ export default function Footer() {
       </div>
 
       {/* Contenido del footer */}
-      <div className="relative z-10">
+      <div className="relative z-30">
         <div className="flex justify-center pt-20">
-          
-          <button  
+          <button
             onClick={handleButtonClick}
             disabled={isButtonDisabled}
             ref={titleRef}
-            className={`fade-in btn ${isLoadedTitle ? "active" : ""} `}
-          > 
+            className={`fade-in btn ${isLoadedTitle ? "active" : ""} z-30`}
+          >
             <span className="strong ">
-              You don&apos;t know the power of the dark side
+            {translations[language].footer.buttonTitle}
             </span>
             <div id="container-stars">
               <div id="glow">
@@ -266,40 +260,41 @@ export default function Footer() {
           </div>
         )} */}
 
-{isImageVisible && (
-  <div className="rayo-container absolute flex top-0 z-50 gap-30 lg:gap-50">
-    <div className="image-wrapper">
-      <img
-        ref={el => (imageRefs.current[2] = el)}
-        src="/rayo3.png"
-        alt="Rayo"
-        width={200}
-        height={800}
-        className="rayo-img lg:h-[700px]"
-      />
-    </div>
-    <div className="image-wrapper lg:ml-[200px]">
-      <img
-        ref={el => (imageRefs.current[0] = el)}
-        src="/rayo2.png"
-        alt="Rayo"
-        width={200}
-        height={1200}
-        className="rayo-img lg:h-[400px]"
-      />
-    </div>
-    <div className="image-wrapper lg:ml-[100px]">
-      <img
-        ref={el => (imageRefs.current[1] = el)}
-        src="/rayo3.png"
-        alt="Rayo"
-        width={200}
-        height={800}
-        className="rayo-img lg:h-[500px]"
-      />
-    </div>
-  </div>
-)}
+        {isImageVisible && (
+          <div className="rayo-container absolute flex top-0 z-25 gap-30 lg:gap-50 ">
+            <div className="image-wrapper">
+              <img
+                ref={(el) => (imageRefs.current[2] = el)}
+                src="/rayo3.png"
+                alt="Rayo"
+                width={200}
+                height={800}
+                className="rayo-img lg:h-[700px]"
+              />
+            </div>
+            <div className="image-wrapper lg:ml-[200px]">
+              <img
+                ref={(el) => (imageRefs.current[0] = el)}
+                src="/rayo2.png"
+                alt="Rayo"
+                width={200}
+                height={1200}
+                className="rayo-img lg:h-[400px]"
+              
+              />
+            </div>
+            <div className="image-wrapper lg:ml-[100px]">
+              <img
+                ref={(el) => (imageRefs.current[1] = el)}
+                src="/rayo3.png"
+                alt="Rayo"
+                width={200}
+                height={800}
+                className="rayo-img lg:h-[500px]"
+              />
+            </div>
+          </div>
+        )}
         <div
           id="vader"
           ref={vaderRef}
@@ -319,7 +314,7 @@ export default function Footer() {
               isLoadedText1 ? "active" : ""
             } text-[#e91e63] flex justify-center font-extra-bold uppercase text-1xl`}
           >
-            Visitors
+               {translations[language].footer.visitorsText}
           </p>
           <p
             ref={text2Ref}
@@ -327,7 +322,7 @@ export default function Footer() {
               isLoadedText2 ? "active" : ""
             } text-gradient-description flex justify-center text-1xl`}
           >
-                Check out my real-time visitor counter app!
+               {translations[language].footer.visitorCounterText}
           </p>
           <div className="flex justify-center lg:justify-center w-full">
             <div className="w-full lg:w-[80%]">
@@ -351,7 +346,7 @@ export default function Footer() {
                 isLoadedText3 ? "active" : ""
               } text-[#00bcd4] flex justify-center text-2xl mb-3`}
             >
-              Follow Me Around
+                {translations[language].footer.socialMediasText}
             </p>
             <div
               ref={socialMediasRef}
@@ -432,7 +427,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="mt-4 justify-center flex text-[#fff] text-xs md:text-base">
-              <p>© 2024 Alian Andahur. All Rights Reserved.</p>
+              <p>{translations[language].footer.footer_copyright}</p>
             </div>
           </div>
         </div>

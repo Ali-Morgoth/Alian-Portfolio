@@ -3,6 +3,8 @@ import { firestore, signInWithGoogle, signOut, auth } from '../../lib/firebase';
 import { collection, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import '../../globals.css'; // Importar el archivo CSS global
 import './testimonials.css';
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -14,7 +16,7 @@ const Testimonials = () => {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-
+ 
   useEffect(() => {
     const fetchTestimonials = async () => {
       const querySnapshot = await getDocs(collection(firestore, 'testimonials'));
@@ -143,11 +145,12 @@ const Testimonials = () => {
     }
   }, []);
 
+  const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
 
 
   return (
     <div className="text-white p-8 ml-2 mt-5 mr-2 rounded-lg" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-      <h2 className="text-3xl font-bold mb-6">What people say</h2>
+      <h2 className="text-3xl font-bold mb-6">{translations[language].testimonials.testimonialsTitle}</h2>
       <div className="testimonials-wrapper">
         <button onClick={scrollLeftOne} className="scroll-button left-button">‹</button>
         <div 
@@ -178,7 +181,7 @@ const Testimonials = () => {
           <textarea
             value={newTestimonial}
             onChange={(e) => setNewTestimonial(e.target.value)}
-            placeholder="Add your testimonial"
+            placeholder={translations[language].testimonials.addTestimonialPlaceholder}
             className="w-full p-2 rounded-lg bg-gray-700"
           />
           <select
@@ -186,7 +189,7 @@ const Testimonials = () => {
             onChange={handleRatingChange}
             className="w-full p-2 rounded-lg bg-gray-700 mt-2"
           >
-            <option value="" disabled>Select stars</option>
+            <option value="" disabled>{translations[language].testimonials.selectStarsPlaceholder}</option>
             <option value="1">★</option>
             <option value="2">★★</option>
             <option value="3">★★★</option>
@@ -197,13 +200,13 @@ const Testimonials = () => {
             onClick={handleAddTestimonial}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2"
           >
-            Send
+            {translations[language].testimonials.sendButton}
           </button>
           <button
             onClick={handleLogout}
             className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2 ml-2"
           >
-            Logout
+            {translations[language].testimonials.logoutButton}
           </button>
         </div>
       ) : (
@@ -212,7 +215,7 @@ const Testimonials = () => {
             onClick={handleLogin}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-6"
           >
-            Sign in with Google to add your testimonial
+            {translations[language].testimonials.signInWithGoogleButton}
           </button>
           {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         </>

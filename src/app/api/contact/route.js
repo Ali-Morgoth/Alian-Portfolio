@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import dotenv from 'dotenv';
 
+
+
+
 dotenv.config();
 
 export async function POST(request) {
+
     const data = await request.json();
     let nodemailer = require('nodemailer');
     try {

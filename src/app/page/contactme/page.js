@@ -7,11 +7,14 @@ import { FaHeadphones } from "react-icons/fa";
 import { Hind } from "next/font/google";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
 
 const hind = Hind({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
+
 
 export default function Page() {
   const [state, setState] = useState({
@@ -23,6 +26,7 @@ export default function Page() {
   });
 
   const [loading, setLoading] = useState(false);
+  const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
 
   const handleChange = (e) => {
     const key = e.target.name;
@@ -87,6 +91,7 @@ export default function Page() {
   const [isLoadedCards, setIsLoadedCards] = useState(false);
   const [isLoadedPic, setIsLoadedPic] = useState(false);
   const [isLoadedForm, setIsLoadedForm] = useState(false);
+ 
 
   useEffect(() => {
     setTimeout(() => {
@@ -137,7 +142,7 @@ export default function Page() {
                 } text-center bg-[#00bcd4] py-[5px] px-[10px] tracking-wide uppercase font-semibold text-[20px] rounded-lg `}
               >
                 <a href="#contact" className="cursor-pointer">
-                  Contact Form
+                   {translations[language].hireme.contactFormTitle}
                 </a>
               </div>
               <div
@@ -146,7 +151,7 @@ export default function Page() {
                 } mt-[10px]`}
               >
                 <h1 className="recoletaBold text-5xl text-[#00bcd4] p-2 text-center tracking-wide">
-                  Hire Me
+                    {translations[language].hireme.hireMeTitle}
                 </h1>
               </div>
               <div
@@ -161,13 +166,7 @@ export default function Page() {
                     WebkitTextStrokeColor: "white",
                   }}
                 >
-                  Are you looking for a versatile professional in
-                  full-stack/front-end developer, building your next web
-                  application?, music production mastering/mixing, digital music
-                  distribuitor, advanced guitar lessons, USD/CLP trading brokers
-                  and cybersecurity measures... I bring a holistic approach to
-                  meet your needs. Let&apos;s connect and explore how I can assist
-                  you effectively.
+                    {translations[language].hireme.description}
                 </p>
               </div>
             </div>
@@ -187,16 +186,16 @@ export default function Page() {
 
                     <div className="flex flex-col">
                       <div className="text-[#48AFDE] text-[14px]">
-                        <p>Location...</p>
+                        <p> {translations[language].hireme.locationTitle}</p>
                       </div>
                       <div className="font-semibold text-[20px] tracking-wide">
-                        <p>Visit Me At:</p>
+                        <p> {translations[language].hireme.visitMeAt}</p>
                       </div>
                     </div>
                   </div>
                   <div className="mt-10">
                     <p className="text-[#666666] text-sm">
-                      Pualhue San Juan de la Costa
+                    {translations[language].hireme.location}
                     </p>
                   </div>
                 </div>
@@ -212,15 +211,15 @@ export default function Page() {
 
                     <div className="flex flex-col">
                       <div className="text-[#48AFDE] text-[14px]">
-                        <p>Service..</p>
+                        <p>{translations[language].hireme.serviceTitle}</p>
                       </div>
                       <div className="font-semibold text-[20px] tracking-wide">
-                        <p>Call Me On</p>
+                        <p>{translations[language].hireme.callMeOn}</p>
                       </div>
                     </div>
                   </div>
                   <div className="mt-3">
-                    <p className="text-[#666666] text-sm">Tel: +56965725025</p>
+                    <p className="text-[#666666] text-sm">{translations[language].hireme.phoneNumber}</p>
                   </div>
                 </div>
               </div>
@@ -237,16 +236,16 @@ export default function Page() {
 
                     <div className="flex flex-col">
                       <div className="text-[#48AFDE] text-[14px]">
-                        <p>Drop A Line</p>
+                        <p>{translations[language].hireme.dropALine}</p>
                       </div>
                       <div className="font-semibold text-[20px] tracking-wide">
-                        <p>Mail Address</p>
+                        <p>{translations[language].hireme.mailAdressTitle}</p>
                       </div>
                     </div>
                   </div>
                   <div className="mt-10">
                     <p className="text-[#666666] text-sm">
-                      alian.andahur.lml@gmail.com
+                    {translations[language].hireme.email}
                     </p>
                   </div>
                 </div>
@@ -262,20 +261,20 @@ export default function Page() {
 
                     <div className="flex flex-col">
                       <div className="text-[#48AFDE] text-[14px]">
-                        <p>Office Hours..</p>
+                        <p>{translations[language].hireme.officeHoursTitle}</p>
                       </div>
                       <div className="font-semibold text-[20px] tracking-wide">
-                        <p>Opening Time</p>
+                        <p>{translations[language].hireme.openingTimeTitle}</p>
                       </div>
                     </div>
                   </div>
                   <div>
                     <p className="text-[#666666] text-sm">
-                      Mon - Fri : 9am - 6pm
+                    {translations[language].hireme.openingTime}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[#666666] text-sm">Sunday (Closed)</p>
+                    <p className="text-[#666666] text-sm">{translations[language].hireme.sundayClosed}</p>
                   </div>
                 </div>
               </div>
@@ -298,18 +297,15 @@ export default function Page() {
               <div className="text-4xl xl:mt-[150px] mt-0 rounded-full px-[15px] py-[15px] bg-[#48AFDE] text-white">
                 <FaHeadphones />
               </div>
-              <div className="font-semibold text-[24px]">Chat With Live!</div>
+              <div className="font-semibold text-[24px]">{translations[language].hireme.chatWithLiveTitle}</div>
               <div>
                 <p className="text-center mt-5 font-[200] text-xl">
-                  Are you looking for a responsible, professional full-stack
-                  developer and designer for your website, music producer,
-                  trading tips or a guitar teacher? Just leave me a message and
-                  tell me how I can help.
+                {translations[language].hireme.chatDescription}
                 </p>
               </div>
               <div>
                 <button className="bg-[#48AFDE] text-white mb-[30px] px-4 py-2 hover:bg-[#223740] transition-color rounded-xl">
-                  Let&apos;s chat
+                {translations[language].hireme.letsChatButton}
                 </button>
               </div>
             </div>
@@ -320,11 +316,11 @@ export default function Page() {
             } flex flex-col gap-[20px]`}
           >
             <div className="text-center w-[100px] bg-red-500 py-[1px] tracking-wide uppercase font-300 font-sans text-[14px] text-white rounded-lg">
-              Contact Me
+            {translations[language].hireme.contact_me_button}
             </div>
             <div className="">
               <p className="text-[30px] text-[#48AFDE]">
-                Request A Call Back ! Feel Free To Reach & Contact Me.
+              {translations[language].hireme.request_call_back}
               </p>
             </div>
             <form className="flex flex-col gap-[20px]" onSubmit={handleSubmit}>
@@ -334,7 +330,7 @@ export default function Page() {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Your Name.."
+                  placeholder={translations[language].hireme.form_name_placeholder}
                   required
                   onChange={handleChange}
                   value={state.name}
@@ -343,7 +339,7 @@ export default function Page() {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your Email.."
+                  placeholder={translations[language].hireme.form_email_placeholder}
                   required
                   onChange={handleChange}
                   value={state.email}
@@ -356,7 +352,7 @@ export default function Page() {
                 <input
                   type="text"
                   name="phoneNumber"
-                  placeholder="Your Number.."
+                  placeholder={translations[language].hireme.form_phone_placeholder}
                   required
                   onChange={handlePhoneChange}
                   value={state.phoneNumber}
@@ -365,7 +361,7 @@ export default function Page() {
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Your Subject.."
+                  placeholder={translations[language].hireme.form_subject_placeholder}
                   required
                   onChange={handleChange}
                   value={state.subject}
@@ -376,7 +372,7 @@ export default function Page() {
                 <textarea
                   required
                   name="message"
-                  placeholder="Your Message.."
+                  placeholder={translations[language].hireme.form_message_placeholder}
                   onChange={handleChange}
                   value={state.message}
                   className="px-[12px] outline-none h-[180px] w-full rounded-md py-[12px] flex-1 bg-gray-200"
@@ -387,7 +383,7 @@ export default function Page() {
                   <div className="mb-3 text-center ml-5 w-6 h-6 border-t-2 border-blue-600 border-solid animate-spin rounded-full"></div>
                 )}
                 <button className="bg-[#48AFDE] w-full sm:w-auto px-[30px] py-[12px] hover:bg-[#223740] transition-colors duration-300 font-semibold rounded-lg text-white">
-                  Send me a message
+                {translations[language].hireme.form_submit_button}
                 </button>
               </div>
             </form>

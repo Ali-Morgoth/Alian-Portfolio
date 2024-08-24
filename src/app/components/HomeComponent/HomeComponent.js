@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HiArrowCircleDown } from "react-icons/hi";
 import "../../globals.css";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext';
 
 const hind = Hind({
   subsets: ["latin"],
@@ -104,6 +106,8 @@ export default function HomeComponent() {
   const [isLoadedProfilePic, setIsLoadedProfilePic] = useState(false);
   const [isLoadedSlider, setIsLoadedSlider] = useState(false);
 
+  const { language } = useLanguage(); // Obtener el idioma desde el contexto
+
   useEffect(() => {
     // Simulando una carga asincrónica (puedes ajustar según tu lógica de carga)
     setTimeout(() => {
@@ -174,7 +178,7 @@ export default function HomeComponent() {
                       hind.className
                     }`}
                   >
-                    Hello there! I&apos;m
+                   {translations[language].home.greeting}
                   </p>
 
                   <div
@@ -196,8 +200,7 @@ export default function HomeComponent() {
                       hind.className
                     }`}
                   >
-                    Fullstack Developer, Music Producer, Musician, Trader &amp;
-                    an Ethical Hacker
+                     {translations[language].home.role}
                   </h2>
 
                   {/* <!-- Contenedor para alinear los botones horizontalmente --> */}
@@ -210,7 +213,7 @@ export default function HomeComponent() {
                         hind.className
                       }`}
                     >
-                      Projects
+                       {translations[language].home.projects_button}
                     </a>
                     <a
                       href="cv_alian.pdf"
@@ -222,7 +225,7 @@ export default function HomeComponent() {
                       }`}
                     >
                       <span className="flex items-center text-xs">
-                        My resume
+                      {translations[language].home.resume_button}
                         <HiArrowCircleDown className="ml-2" />
                       </span>
                     </a>

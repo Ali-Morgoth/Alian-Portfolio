@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import "../../globals.css"
 import Link from "next/link";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext';
 
 export default function DiagonalDrawer({
   isOpen,
@@ -9,8 +11,14 @@ export default function DiagonalDrawer({
   selecttedIndex1,
   setSelectedIndex1,
 }) {
+  
+  
   const route = useRouter();
   const pathname = usePathname();  
+  const { language } = useLanguage(); // Obtener el idioma desde el contexto
+  
+
+  
   
   return (
     <React.Fragment>
@@ -80,7 +88,7 @@ export default function DiagonalDrawer({
                       }}
                       className="Diagonal-gradient"
                     >
-                      Home
+                       {translations[language].header.home}
                     </a>
                     {selecttedIndex1 === 0 ? (
                       <div className="absolute top-2 -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
@@ -102,7 +110,7 @@ export default function DiagonalDrawer({
                       }}
                        className="Diagonal-gradient"
                     >
-                      Portfolio
+                      {translations[language].diagonal.portfolio}
                     </Link>
                     {selecttedIndex1 === 1 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
@@ -124,7 +132,7 @@ export default function DiagonalDrawer({
                       }}
                        className="Diagonal-gradient"
                     >
-                      About Me
+                      {translations[language].diagonal.about_me}
                     </Link>
                     {selecttedIndex1 === 2 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
@@ -146,7 +154,7 @@ export default function DiagonalDrawer({
                       }}
                        className="Diagonal-gradient"
                     >
-                      Hire Me
+                      {translations[language].diagonal.hire_me}
                     </Link>
                     {selecttedIndex1 === 3 ? (
                       <div className="absolute top-2  -left-2 w-full h-full transform-gpu transition-all duration-300 -rotate-6  opacity-100  group-hover:-rotate-6 group-hover:opacity-100 bg-[#DABF28] rounded-xl -z-10"></div>
@@ -160,7 +168,7 @@ export default function DiagonalDrawer({
             </nav>
             <section className="mt-14 sm:mt-12 lg:mt-14 text-center relative sm:absolute lg:relative sm:right-0 lg:right-0 h-auto sm:h-full lg:h-auto">
               <h3 className="block sm:hidden lg:block font-bold text-gradient  text-2xl uppercase mb-5">
-                Follow Me Around
+              {translations[language].diagonal.follow_me}
               </h3>
               <div className="flex flex-col sm:flex-col lg:flex-row items-center justify-center space-y-5 sm:space-y-8 lg:space-y-0 lg:space-x-6">
             

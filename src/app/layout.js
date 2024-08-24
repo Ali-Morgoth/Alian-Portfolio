@@ -3,6 +3,8 @@ import "./globals.css";
 import ClientLayout from './ClientLayout';
 import { LoadingProvider } from '../app/Context/LoadingContext';
 import Head from 'next/head';
+import { LanguageProvider } from '../app/Context/LanguageContext'; // Importa el LanguageProvider
+
 
 export const metadata = {
   title: "Alian Andahur",
@@ -18,11 +20,13 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <LoadingProvider>
-          <ClientLayout>
-            <div translate="no"> {/* Evita la traducción automática en este contenido */}
-              {children}
-            </div>
-          </ClientLayout>
+          <LanguageProvider> {/* Envuelve el contenido en LanguageProvider */}
+            <ClientLayout>
+              <div translate="no"> {/* Evita la traducción automática en este contenido */}
+                {children}
+              </div>
+            </ClientLayout>
+          </LanguageProvider>
         </LoadingProvider>
       </body>
     </html>

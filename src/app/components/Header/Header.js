@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 import Drawer from "./DiagonalDrawer";
 import "../Header/DiagonalDrawer.css";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import translations from '../../translations.json'; // Importar el archivo de traducciones
+import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
 import "../../globals.css";
 
 export default function Header() {
@@ -12,11 +14,13 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoadedMenu, setIsLoadedMenu] = useState(false);
+  const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
   const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       setIsScrolled(scrollTop > 0);
     };
     window.addEventListener("scroll", handleScroll);
@@ -32,7 +36,13 @@ export default function Header() {
   const handleNavigation = (index, href) => {
     setSelectedIndex1(index);
     router.push(href);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Función para cambiar idioma 
+  const toggleLanguage = () => {
+    const newLanguage = language === 'en' ? 'es' : 'en';
+    setLanguage(newLanguage);
   };
 
   return (
@@ -73,7 +83,11 @@ export default function Header() {
           </div>
         </div>
 
-        <nav className={`fade-in ${isLoadedMenu ? "active" : ""} invisible xl:visible xl:max-w-4xl 2xl:max-w-7xl mx-auto`} >
+        <nav
+          className={`fade-in ${
+            isLoadedMenu ? "active" : ""
+          } invisible xl:visible xl:max-w-4xl 2xl:max-w-7xl mx-auto`}
+        >
           <ul className="flex font-recoletaBlack flex-row items-center h-24">
             <li className="group text-2xl relative font-bold mr-20">
               {selectedIndex1 === 0 ? (
@@ -82,10 +96,12 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${selectedIndex1 === 0 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                className={`menu-item text-gradient-menu ${
+                  selectedIndex1 === 0 ? "text-[#DABF28]" : ""
+                } group-hover:text-[#DABF28]`}
                 onClick={() => handleNavigation(0, "/#home")}
               >
-                Home
+                {translations[language].header.home}
               </a>
             </li>
             <li className="group text-2xl relative font-bold mr-20">
@@ -95,10 +111,12 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${selectedIndex1 === 1 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                className={`menu-item text-gradient-menu ${
+                  selectedIndex1 === 1 ? "text-[#DABF28]" : ""
+                } group-hover:text-[#DABF28]`}
                 onClick={() => handleNavigation(1, "/#portfolio")}
               >
-                Portfolio
+                {translations[language].header.portfolio}
               </a>
             </li>
             <li className="group text-2xl relative font-bold mr-20">
@@ -108,10 +126,12 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <a
-                className={`menu-item text-gradient-menu ${selectedIndex1 === 2 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                className={`menu-item text-gradient-menu ${
+                  selectedIndex1 === 2 ? "text-[#DABF28]" : ""
+                } group-hover:text-[#DABF28]`}
                 onClick={() => handleNavigation(2, "/#about-me-component")}
               >
-                About Me
+                {translations[language].header.about_me}
               </a>
             </li>
             <li className="group text-2xl relative font-bold mr-20">
@@ -121,15 +141,24 @@ export default function Header() {
                 <span className="menu-effect transform opacity-0 rotate-12 group-hover:-rotate-12 group-hover:opacity-100"></span>
               )}
               <Link
-                className={`menu-item text-gradient-menu ${selectedIndex1 === 3 ? "text-[#DABF28]" : ""} group-hover:text-[#DABF28]`}
+                className={`menu-item text-gradient-menu ${
+                  selectedIndex1 === 3 ? "text-[#DABF28]" : ""
+                } group-hover:text-[#DABF28]`}
                 href="/page/contactme"
                 onClick={() => handleNavigation(3, "/page/contactme")}
               >
-                Hire Me
+                 {translations[language].header.hire_me}
               </Link>
             </li>
           </ul>
         </nav>
+
+        {/* Botón de idioma siempre visible, incluso en pantallas pequeñas */}
+        <div className="absolute top-4 right-4 z-50 lg:mt-[6px]">
+          <button id="language" className="custom-button" onClick={toggleLanguage}>
+            {translations[language].header.language}
+          </button>
+        </div>
       </header>
     </React.Fragment>
   );
