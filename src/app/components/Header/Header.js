@@ -5,9 +5,12 @@ import Drawer from "./DiagonalDrawer";
 import "../Header/DiagonalDrawer.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import translations from '../../translations.json'; // Importar el archivo de traducciones
-import { useLanguage } from '../../Context/LanguageContext'; // Importar el hook de idioma
+import translations from "../../translations.json"; // Importar el archivo de traducciones
+import { useLanguage } from "../../Context/LanguageContext"; // Importar el hook de idioma
+import { firestore } from "../../lib/firebase"; // Importar la configuración de Firestore
+import { doc, getDoc, updateDoc, increment } from "firebase/firestore"; // Importar funciones de Firestore
 import "../../globals.css";
+import { AiFillHeart } from "react-icons/ai"; // Importar ícono de corazón
 
 export default function Header() {
   const [selectedIndex1, setSelectedIndex1] = useState(0);
@@ -15,6 +18,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoadedMenu, setIsLoadedMenu] = useState(false);
   const { language, setLanguage } = useLanguage(); // Usar el idioma global del contexto
+  const [likes, setLikes] = useState(0);
+  const [hasLiked, setHasLiked] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -39,10 +44,41 @@ export default function Header() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Función para cambiar idioma 
+  // Función para cambiar idioma
   const toggleLanguage = () => {
-    const newLanguage = language === 'en' ? 'es' : 'en';
+    const newLanguage = language === "en" ? "es" : "en";
     setLanguage(newLanguage);
+  };
+
+  //funcion para boton de likes
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const docRef = doc(firestore, "LikesList", "1lYR1Th3pvtIku333VDG");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setLikes(docSnap.data().LikesCount);
+      }
+    };
+    fetchLikes();
+
+    const lastLiked = localStorage.getItem("lastLiked");
+    if (lastLiked && new Date().getTime() - lastLiked < 86400000) {
+      setHasLiked(true);
+    }
+  }, []);
+
+  const handleLike = async () => {
+    if (!hasLiked) {
+      setHasLiked(true);
+      localStorage.setItem("lastLiked", new Date().getTime());
+
+      const docRef = doc(firestore, "LikesList", "1lYR1Th3pvtIku333VDG");
+      await updateDoc(docRef, {
+        LikesCount: increment(1),
+      });
+
+      setLikes(likes + 1);
+    }
   };
 
   return (
@@ -55,13 +91,28 @@ export default function Header() {
           setSelectedIndex1={setSelectedIndex1}
         />
       </div>
-      <header
+      {/* <header
         className={`${
           isScrolled ? "headerShow" : ""
         } w-full fixed top-0 z-50 transition-all duration-500`}
         style={{
           backgroundColor: isScrolled ? "#1f1f1f" : "transparent",
           boxShadow: isScrolled ? "#00bcd4 -10px 15px 20px 10px" : "",
+        }}
+      > */}
+      <header
+        className={`w-full fixed top-0 z-50 transition-all duration-500 ${
+          isScrolled ? "header-scrolled" : ""
+        }`}
+        style={{
+          width: "100%",
+          maxWidth: "100vw", // Asegura que el ancho del header no exceda el tamaño de la ventana
+          boxSizing: "border-box", // Asegura que el padding y borde no afecten el tamaño total
+          backgroundColor: isScrolled ? "#1f1f1f" : "transparent",
+          boxShadow: isScrolled
+            ? "0px -10px 15px 20px rgba(0, 188, 212, 0.5)"
+            : "",
+        
         }}
       >
         <div className="relative">
@@ -147,15 +198,35 @@ export default function Header() {
                 href="/page/contactme"
                 onClick={() => handleNavigation(3, "/page/contactme")}
               >
-                 {translations[language].header.hire_me}
+                {translations[language].header.hire_me}
               </Link>
             </li>
           </ul>
         </nav>
+        {/* Botón de idioma y likes */}
+        <div className="absolute top-2 right-4 z-50 lg:mt-4 flex items-center space-x-4">
+          {/* Botón de likes */}
+          <div className="text-white mr-12 flex items-center">
+            <button
+              onClick={handleLike}
+              disabled={hasLiked}
+              className="flex items-center space-x-2"
+            >
+              <AiFillHeart
+                className={`text-2xl ${
+                  hasLiked ? "text-red-600" : "text-white"
+                }`}
+              />
+              <span className="text-1xl text-[#00bcd4]">{likes}</span>
+            </button>
+          </div>
 
-        {/* Botón de idioma siempre visible, incluso en pantallas pequeñas */}
-        <div className="absolute top-4 right-4 z-50 lg:mt-[6px]">
-          <button id="language" className="custom-button" onClick={toggleLanguage}>
+          {/* Botón de idioma */}
+          <button
+            id="language"
+            className="custom-button"
+            onClick={toggleLanguage}
+          >
             {translations[language].header.language}
           </button>
         </div>
