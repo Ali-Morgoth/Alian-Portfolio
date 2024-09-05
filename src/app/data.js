@@ -658,7 +658,7 @@ export const AboutData = [
     name: translations[language].visitor_counter.name,
     des: translations[language].visitor_counter.description,
     des1: translations[language].visitor_counter.description_extra,
-    images: ["/geomap.jpg"],
+    images: ["/geomap.webp"],
     skill1: "Next.js",
     skill2: "Firebase/Firestore",
     skill3: "CSS/Tailwind",

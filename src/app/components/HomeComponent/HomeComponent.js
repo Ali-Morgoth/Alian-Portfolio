@@ -187,7 +187,7 @@ export default function HomeComponent() {
                     } flex items-center mt-[-40px] mb-3 `}
                   >
                     <img
-                      src="/PerfilTitulo.png"
+                      src="/PerfilTitulo.webp"
                       decoding="async"
                       className="ml-0" // Margen izquierdo para separar el h1 de la imagen
                       alt="TituloPerfil"
@@ -240,7 +240,7 @@ export default function HomeComponent() {
                 } container m-auto`}
               >
                 <img
-                  src="/perfil3.png"
+                  src="/perfil3_11.webp"
                   decoding="async"
                   alt="profile pics"
                   className="w-full h-auto mt-[-150px]"
@@ -262,32 +262,33 @@ export default function HomeComponent() {
               >
                 <div className="lg:py-10 md:py-6 sm:py-6 cursor-all-scroll">
                   <Slider {...settings}>
-                    <img src="/filmora.avif" alt="filmora" className="h-12" />
-                    <img src="/reactjs.png" alt="reactjs" className="h-12" />
-                    <img src="/nextjs.png" alt="nextjs" className="h-12" />
+                    <img src="/Filmora1.webp" alt="filmora" className="h-12" />
+                    <img src="/reactjs.webp" alt="reactjs" className="h-12" />
+                    <img src="/nextjs.webp" alt="nextjs" className="h-12" />
+                    <img src="/Firebase.webp" alt="firebase" className="h-12" />
                     <img
-                      src="/studioone.jpg"
+                      src="/studioone.webp"
                       alt="studioone"
                       className="h-12"
                     />
                     <img
-                      src="/expressjs.png"
+                      src="/expressjs.webp"
                       alt="expressjs"
                       className="h-12"
                     />
-                    <img src="/nodejs.png" alt="nodejs" className="h-12" />
-                    <img src="/hacker.png" alt="hacker" className="h-12" />
+                    <img src="/nodejs.webp" alt="nodejs" className="h-12" />
+                    <img src="/hacker.webp" alt="hacker" className="h-12" />
                     <img
-                      src="/react_native.png"
+                      src="/react_native.webp"
                       alt="reactnative"
                       className="h-12"
                     />
                     <img
-                      src="/metasploit.png"
+                      src="/metasploit.webp"
                       alt="metasploit"
                       className="h-12"
                     />
-                    <img src="/kali.png" alt="kali" className="h-12" />
+                    <img src="/kali.webp" alt="kali" className="h-12" />
                     <img src="/aws.webp" alt="aws" className="h-12" />
                   </Slider>
                 </div>

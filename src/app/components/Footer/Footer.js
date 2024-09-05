@@ -146,7 +146,7 @@ export default function Footer() {
   useEffect(() => {
     if (isImageVisible) {
       let currentIndex = 0;
-      const imageSequence = ["/rayo1.png", "/rayo2.png", "/rayo3.png"];
+      const imageSequence = ["/rayo1.webp", "/rayo2.webp", "/rayo3.webp"];
 
       const showImage = () => {
         imageRefs.current.forEach((img, index) => {
@@ -180,7 +180,7 @@ export default function Footer() {
         <div className="absolute inset-0"></div>
         {/* Imagen de fondo */}
         <img
-          src="/mustafar.jpg"
+          src="/mustafar.webp"
           alt="Background"
           className="w-full h-full object-cover shadow-top z-10"
           style={{
@@ -265,7 +265,7 @@ export default function Footer() {
             <div className="image-wrapper">
               <img
                 ref={(el) => (imageRefs.current[2] = el)}
-                src="/rayo3.png"
+                src="/rayo3.webp"
                 alt="Rayo"
                 width={200}
                 height={800}
@@ -275,7 +275,7 @@ export default function Footer() {
             <div className="image-wrapper lg:ml-[200px]">
               <img
                 ref={(el) => (imageRefs.current[0] = el)}
-                src="/rayo2.png"
+                src="/rayo2.webp"
                 alt="Rayo"
                 width={200}
                 height={1200}
@@ -286,7 +286,7 @@ export default function Footer() {
             <div className="image-wrapper lg:ml-[100px]">
               <img
                 ref={(el) => (imageRefs.current[1] = el)}
-                src="/rayo3.png"
+                src="/rayo3.webp"
                 alt="Rayo"
                 width={200}
                 height={800}
