@@ -404,7 +404,7 @@ export default function Index({ id }) {
   // Filter images to exclude testimonial.webp and geomap.jpg
   const filteredImages =
     data?.images?.filter(
-      (image) => image !== "/testimonial.webp" && image !== "/geomap.jpg"
+      (image) => image !== "/testimonial.webp" && image !== "/geomap.webp"
     ) || [];
 
   return (

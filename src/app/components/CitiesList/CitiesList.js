@@ -53,6 +53,7 @@ import { firestore } from '../../lib/firebase';
 import { collection, onSnapshot, addDoc, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
 import translations from '../../translations.json'; // Importar el archivo de traducciones
 import { useLanguage } from '../../Context/LanguageContext'; //importar el contexto de traducciones 
+import { FaSyncAlt } from 'react-icons/fa'; // Importar icono de refresh
 
 const CitiesList = () => {
   const [cities, setCities] = useState([]);
@@ -63,97 +64,104 @@ const CitiesList = () => {
  
   const {language} = useLanguage(); // obtener el idioma desde el contexto 
 
-  useEffect(() => {
-    const fetchCities = () => {
-      const unsubscribe = onSnapshot(
-        collection(firestore, 'cities'),
-        (querySnapshot) => {
-          const cityData = [];
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            cityData.push({
-              name: data.city,
-              country: data.country,
-              count: data.count,
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const city =
+                data.address.city || data.address.town || data.address.village;
+              const country = data.address.country;
+
+              if (!userCity && !locationChecked) {
+                setUserCity(city);
+                saveCityToFirestore(city, country);
+              }
+              setLocationChecked(true);
+            })
+            .catch((err) => {
+              console.error('Error fetching city from coordinates:', err);
+              setError('Failed to get precise location.');
+              setLocationChecked(true);
             });
-          });
-          setCities(cityData);
         },
         (error) => {
-          console.error('Failed to fetch cities', error);
+          console.error('Error getting location:', error);
+          setError('Location access denied.');
+          setLocationChecked(true);
         }
       );
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+      setLocationChecked(true);
+    }
+  };
 
-      return () => unsubscribe();
-    };
-
-    const saveCityToFirestore = async (city, country) => {
-      try {
-        const cityRef = collection(firestore, 'cities');
-        const q = query(cityRef, where('city', '==', city), where('country', '==', country));
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty) {
-          const existingCityDoc = querySnapshot.docs[0];
-          const newCount = existingCityDoc.data().count + 1;
-          await updateDoc(doc(firestore, 'cities', existingCityDoc.id), {
-            count: newCount,
+  const fetchCities = () => {
+    const unsubscribe = onSnapshot(
+      collection(firestore, 'cities'),
+      (querySnapshot) => {
+        const cityData = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          cityData.push({
+            name: data.city,
+            country: data.country,
+            count: data.count,
           });
-        } else {
-          await addDoc(cityRef, {
-            city,
-            country,
-            count: 1,
-          });
-        }
-      } catch (error) {
-        console.error('Error saving city to Firestore:', error);
+        });
+        setCities(cityData);
+      },
+      (error) => {
+        console.error('Failed to fetch cities', error);
       }
-    };
+    );
 
-    const getLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+    return () => unsubscribe();
+  };
 
-            fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-            )
-              .then((response) => response.json())
-              .then((data) => {
-                const city =
-                  data.address.city || data.address.town || data.address.village;
-                const country = data.address.country;
+  const saveCityToFirestore = async (city, country) => {
+    try {
+      const cityRef = collection(firestore, 'cities');
+      const q = query(cityRef, where('city', '==', city), where('country', '==', country));
+      const querySnapshot = await getDocs(q);
 
-                if (!userCity && !locationChecked) {
-                  setUserCity(city);
-                  saveCityToFirestore(city, country);
-                }
-                setLocationChecked(true);
-              })
-              .catch((err) => {
-                console.error('Error fetching city from coordinates:', err);
-                setError('Failed to get precise location.');
-                setLocationChecked(true);
-              });
-          },
-          (error) => {
-            console.error('Error getting location:', error);
-            setError('Location access denied.');
-            setLocationChecked(true);
-          }
-        );
+      if (!querySnapshot.empty) {
+        const existingCityDoc = querySnapshot.docs[0];
+        const newCount = existingCityDoc.data().count + 1;
+        await updateDoc(doc(firestore, 'cities', existingCityDoc.id), {
+          count: newCount,
+        });
       } else {
-        console.log('Geolocation is not supported by this browser.');
-        setLocationChecked(true);
+        await addDoc(cityRef, {
+          city,
+          country,
+          count: 1,
+        });
       }
-    };
+    } catch (error) {
+      console.error('Error saving city to Firestore:', error);
+    }
+  };
 
+  const handleRefreshClick = () => {
+    setLocationChecked(false); // Reiniciar el estado
+    setError(null); // Limpiar errores
+    getLocation(); // Volver a solicitar permisos de geolocalización
+  };
+
+  useEffect(() => {
     fetchCities();
     getLocation();
   }, []);
+
 
   return (
     <div className="p-4 pb-2 w-[300px] max-w-md mx-auto my-10 bg-white rounded-lg shadow-lg border-2 border-gray-300 mt-2 cursor-pointer hover:bg-[#476571] hover:shadow-xl hover:-translate-y-2 transform transition duration-500">
@@ -164,11 +172,17 @@ const CitiesList = () => {
       {userCity && (
         <div className="mb-4 p-2 bg-gray-100 rounded">
           <strong>{translations[language].cities.city}:</strong> {userCity}
+           <button onClick={handleRefreshClick} className="ml-2 text-blue-600 hover:text-blue-800">
+            <FaSyncAlt size={16} />
+          </button>
         </div>
       )}
       {error && (
         <div className="mb-4 p-2 bg-red-100 text-red-800 rounded">
           {error}
+          <button onClick={handleRefreshClick} className="ml-2 text-blue-600 hover:text-blue-800">
+            <FaSyncAlt size={16} />
+          </button>
         </div>
       )}
       <ul className="max-h-32 overflow-y-auto">
