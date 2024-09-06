@@ -157,6 +157,21 @@ const CitiesList = () => {
     getLocation(); // Volver a solicitar permisos de geolocalización
   };
 
+
+  
+   // Este efecto se activa cuando el estado de los permisos cambia
+   useEffect(() => {
+    const checkPermissionStatus = async () => {
+      const permission = await navigator.permissions.query({ name: 'geolocation' });
+      permission.onchange = () => {
+        if (permission.state === 'granted') {
+          getLocation();
+        }
+      };
+    };
+    checkPermissionStatus();
+  }, []);
+
   useEffect(() => {
     fetchCities();
     getLocation();
@@ -171,7 +186,7 @@ const CitiesList = () => {
       </div>
       {userCity && (
         <div className="mb-4 p-2 bg-gray-100 rounded">
-          <strong>{translations[language].cities.city}:</strong> {userCity}
+          <strong className="text-[#0a7625]">{translations[language].cities.city}:</strong> {userCity}
            <button onClick={handleRefreshClick} className="ml-2 text-blue-600 hover:text-blue-800">
             <FaSyncAlt size={16} />
           </button>

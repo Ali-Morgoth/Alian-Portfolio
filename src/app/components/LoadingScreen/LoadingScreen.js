@@ -43,7 +43,7 @@ const LoadingScreen = () => {
         <div className={`${styles['load-inner']} ${styles['load-three']}`}></div>
       </div>
       <Image
-        src="/PerfilTitulo.png"
+        src="/PerfilTitulo.webp"
         alt="PerfilTitulo"
         width={500}
         height={300}
