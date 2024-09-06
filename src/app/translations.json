@@ -35,7 +35,7 @@
       "visitor_counter": {
         "title": "Visitor Statistics Project - Next.js",
         "name": "Visitor Statistics Project",
-        "description": "I developed this real-time web application based on Next.js, Firebase, and APIs. The application functions to display the geolocation of visitors to my website. I continue to work on improving the accuracy of the system from 80% to 100%.",
+        "description": "I developed this real-time web application using Next.js, Firebase, and APIs. The application is designed to display the geolocation of visitors to my website. This app was recently implemented, with a counter starting from zero. I am continuing to work on improving the system's accuracy from 80% to 100%.",
         "description_extra": "This project was made using Reactjs, Nextjs, Firebase, APIs... (VERY IMPORTANT! If you want to collaborate with this little application and see the real geolocation of your city in the list, please accept the permission notification and make sure your phone's geolocation icon is active. If you prefer not to share your real geolocation, just deny the permissions. This application only uses public information about countries. Thanks to everyone 😁 )",
         "skills": ["Next.js", "Firebase/Firestore", "CSS/Tailwind", "API", "GeoMap", "Json"]
       },
@@ -190,7 +190,7 @@
       "visitor_counter": {
         "title": "Visitor Statistics Project - Next.js",
         "name": "Estadisticas de visitas App",
-        "description": "Desarrollé esta aplicación web en tiempo real basada en Next.js, Firebase y APIs. La aplicación funciona para mostrar la geolocalización de los visitantes de mi sitio web. Continúo trabajando para mejorar la precisión del sistema del 80% al 100%.",
+        "description": "Desarrollé esta aplicación web en tiempo real basada en Next.js, Firebase y APIs. La aplicación funciona para mostrar la geolocalización de los visitantes de mi sitio web. La implementación de esta app se hizo recientemente y con un contador desde 0. Continúo trabajando para mejorar la precisión del sistema del 80% al 100%.",
         "description_extra": "Este proyecto fue realizado utilizando Reactjs, Nextjs, Firebase, APIs... (¡MUY IMPORTANTE! Si deseas colaborar con esta pequeña aplicación y ver la geolocalización real de tu ciudad en la lista, por favor acepta la notificación de permisos y asegúrate de que el icono de geolocalización de tu teléfono esté activo. Si prefieres no compartir tu geolocalización real, simplemente rechaza los permisos. Esta aplicación solo utiliza información pública sobre los países. Gracias a todos 😁 )",
         "skills": ["Next.js", "Firebase/Firestore", "CSS/Tailwind", "API", "GeoMap", "Json"]
       },
