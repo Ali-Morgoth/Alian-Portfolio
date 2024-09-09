@@ -14,3 +14,13 @@
   .slider-indicators .indicator.bg-gray-300 {
     background-color: #ccc; /* Color gris */
   }
+
+  .line {
+    background-color: #00bcd4; /* Línea semi-transparente */
+    height: 2px; /* Ajustar el grosor */
+    width: 75%; /* Ocupa un 75% del ancho de la pantalla */
+    margin: 0 auto; /* Centrarla */
+    border-radius: 4px; /* Bordes redondeados opcionales */
+    margin-top: 10px;
+  }
+  

@@ -1,4 +1,3 @@
-
 // import React from "react";
 // import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
@@ -10,7 +9,6 @@
 
 // export default function MySlider() {
 
-  
 //   const { language } = useLanguage(); // Obtener el idioma desde el contexto
 
 //   // Obtener el array de datos en función del idioma
@@ -175,7 +173,6 @@
 //   );
 // }
 
-
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -183,7 +180,7 @@ import "slick-carousel/slick/slick-theme.css";
 import SliderCard from "./SliderCard";
 import { DataArray } from "@/app/data";
 import { useLanguage } from "../../Context/LanguageContext";
-import './myslider.css'
+import "./myslider.css";
 
 export default function MySlider() {
   const { language } = useLanguage(); // Obtener el idioma desde el contexto
@@ -350,9 +347,9 @@ export default function MySlider() {
           <div>No data available</div>
         )}
       </Slider>
-      
+
       {/* Indicadores de progreso */}
-      <div className="slider-indicators flex justify-center mt-4">
+      <div className="slider-indicators flex justify-center mt-8 sm:mt-10">
         {Array.from({ length: totalSlides }).map((_, index) => (
           <div
             key={index}
@@ -364,6 +361,11 @@ export default function MySlider() {
             }}
           />
         ))}
+      </div>
+
+      {/* Línea semi-transparente debajo de los círculos */}
+      <div className="line-container flex justify-center mt-4 lg:mt-8 ">
+        <div className="line w-3/4 h-1 bg-gray-300 opacity-50"></div>
       </div>
     </div>
   );
