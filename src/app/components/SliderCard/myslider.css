@@ -1,0 +1,16 @@
+.slider-indicators .indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .slider-indicators .indicator.bg-blue-500 {
+    background-color: #00bcd4; /* Color calipso */
+  }
+  
+  .slider-indicators .indicator.bg-gray-300 {
+    background-color: #ccc; /* Color gris */
+  }

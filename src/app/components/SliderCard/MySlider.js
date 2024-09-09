@@ -1,3 +1,4 @@
+
 // import React from "react";
 // import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
@@ -5,8 +6,15 @@
 
 // import SliderCard from "./SliderCard";
 // import { DataArray, projects } from "@/app/data";
+// import {useLanguage} from "../../Context/LanguageContext"
 
 // export default function MySlider() {
+
+  
+//   const { language } = useLanguage(); // Obtener el idioma desde el contexto
+
+//   // Obtener el array de datos en función del idioma
+//   const dataArray = DataArray({ language });
 
 //   var settings = {
 //     infinite: true,
@@ -154,56 +162,35 @@
 
 //   return (
 //     <Slider {...settings} >
-//       {DataArray.map((item, index) => (
+//     {Array.isArray(dataArray) ? (
+//       dataArray.map((item, index) => (
 //         <div key={index} className="my-slider">
 //           <SliderCard item={item} index={index} />
 //         </div>
-//       ))}
-// </Slider>
+//       ))
+//     ) : (
+//       <div>No data available</div>
+//     )}
+//   </Slider>
 //   );
 // }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import SliderCard from "./SliderCard";
-import { DataArray, projects } from "@/app/data";
-import {useLanguage} from "../../Context/LanguageContext"
+import { DataArray } from "@/app/data";
+import { useLanguage } from "../../Context/LanguageContext";
+import './myslider.css'
 
 export default function MySlider() {
-
-  
   const { language } = useLanguage(); // Obtener el idioma desde el contexto
-
-  // Obtener el array de datos en función del idioma
   const dataArray = DataArray({ language });
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const totalSlides = dataArray.length;
 
   var settings = {
     infinite: true,
@@ -213,7 +200,8 @@ export default function MySlider() {
     arrows: false,
     centerMode: true,
     centerPadding: "400px",
-    dots: true,
+    dots: false, // Ocultar dots por defecto de slick
+    afterChange: (current) => setCurrentSlide(current), // Actualizar el estado con el slide actual
     responsive: [
       {
         breakpoint: 1700,
@@ -221,7 +209,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "400px",
         },
       },
@@ -231,7 +219,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "350px",
         },
       },
@@ -241,7 +229,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "300px",
         },
       },
@@ -251,7 +239,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "250px",
         },
       },
@@ -261,7 +249,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "200px",
         },
       },
@@ -271,7 +259,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "170px",
         },
       },
@@ -281,7 +269,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "230px",
         },
       },
@@ -291,7 +279,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "200px",
         },
       },
@@ -301,7 +289,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "170px",
         },
       },
@@ -311,7 +299,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "130px",
         },
       },
@@ -321,7 +309,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "100px",
         },
       },
@@ -331,7 +319,7 @@ export default function MySlider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
           centerPadding: "170px",
         },
       },
@@ -350,16 +338,33 @@ export default function MySlider() {
   };
 
   return (
-    <Slider {...settings} >
-    {Array.isArray(dataArray) ? (
-      dataArray.map((item, index) => (
-        <div key={index} className="my-slider">
-          <SliderCard item={item} index={index} />
-        </div>
-      ))
-    ) : (
-      <div>No data available</div>
-    )}
-  </Slider>
+    <div className="slider-container">
+      <Slider {...settings}>
+        {Array.isArray(dataArray) ? (
+          dataArray.map((item, index) => (
+            <div key={index} className="my-slider">
+              <SliderCard item={item} index={index} />
+            </div>
+          ))
+        ) : (
+          <div>No data available</div>
+        )}
+      </Slider>
+      
+      {/* Indicadores de progreso */}
+      <div className="slider-indicators flex justify-center mt-4">
+        {Array.from({ length: totalSlides }).map((_, index) => (
+          <div
+            key={index}
+            className={`indicator w-4 h-4 mx-2 rounded-full transition-all ${
+              currentSlide === index ? "bg-blue-500" : "bg-gray-300"
+            }`}
+            style={{
+              transform: currentSlide === index ? "scale(1.2)" : "scale(1)",
+            }}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
