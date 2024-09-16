@@ -10,6 +10,13 @@ countries.registerLocale(enLocale);
 
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
+// Mapeo manual para corregir diferencias en nombres de países
+const countryNameMapping = {
+  "Russian Federation": "Russia",
+  "Republic of Korea": "South Korea",
+  // Añade otros mapeos manuales si es necesario
+};
+
 const WorldMap = () => {
   const [highlightedCountries, setHighlightedCountries] = useState([]);
 
@@ -18,8 +25,13 @@ const WorldMap = () => {
       try {
         const querySnapshot = await getDocs(collection(firestore, "countries"));
         const countryNames = querySnapshot.docs.map(doc => doc.data().country);
-        // console.log("Country Names from Firestore:", countryNames); 
-        setHighlightedCountries(countryNames);
+
+        // Aplicamos mapeo manual para ajustar los nombres de países
+        const adjustedCountryNames = countryNames.map(name =>
+          countryNameMapping[name] || name // Usa el nombre mapeado o el original si no está en el mapeo
+        );
+
+        setHighlightedCountries(adjustedCountryNames);
       } catch (error) {
         console.error("Failed to fetch countries from Firestore", error);
       }
@@ -33,14 +45,10 @@ const WorldMap = () => {
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map((geo) => {
-            console.log("Geography Object:", geo); // Debugging log to inspect the geo object
             const countryName = geo.properties.name;
-            // console.log("Geography Country Name:", countryName); 
 
+            // Comparamos con los nombres de los países ajustados
             const isHighlighted = highlightedCountries.includes(countryName);
-            if (isHighlighted) {
-              // console.log("Highlighted Country:", countryName); 
-            }
             return (
               <Geography
                 key={geo.rsmKey}
@@ -57,4 +65,3 @@ const WorldMap = () => {
 };
 
 export default WorldMap;
-
