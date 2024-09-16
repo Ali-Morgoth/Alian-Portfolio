@@ -8,7 +8,7 @@ import { LanguageProvider } from '../app/Context/LanguageContext'; // Importa el
 
 export const metadata = {
   title: "Alian Andahur",
-  description: "Discover my digital and musical skills",
+  description: "Discover my digital and musical skills by Alian Andahur",
 };
 
 export default function RootLayout({ children }) {
