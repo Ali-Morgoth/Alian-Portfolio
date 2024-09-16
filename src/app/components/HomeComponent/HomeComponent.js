@@ -190,7 +190,7 @@ export default function HomeComponent() {
                       src="/PerfilTitulo.webp"
                       decoding="async"
                       className="ml-0" // Margen izquierdo para separar el h1 de la imagen
-                      alt="TituloPerfil"
+                      alt="Alian Andahur - Full Stack Developer and Music Produc"
                     />
                   </div>
                   <h2
