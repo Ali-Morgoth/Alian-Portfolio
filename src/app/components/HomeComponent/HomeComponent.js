@@ -5,8 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HiArrowCircleDown } from "react-icons/hi";
 import "../../globals.css";
-import translations from '../../translations.json'; // Importar el archivo de traducciones
-import { useLanguage } from '../../Context/LanguageContext';
+import translations from "../../translations.json"; // Importar el archivo de traducciones
+import { useLanguage } from "../../Context/LanguageContext";
 
 const hind = Hind({
   subsets: ["latin"],
@@ -178,7 +178,7 @@ export default function HomeComponent() {
                       hind.className
                     }`}
                   >
-                   {translations[language].home.greeting}
+                    {translations[language].home.greeting}
                   </p>
 
                   <div
@@ -200,7 +200,7 @@ export default function HomeComponent() {
                       hind.className
                     }`}
                   >
-                     {translations[language].home.role}
+                    {translations[language].home.role}
                   </h2>
 
                   {/* <!-- Contenedor para alinear los botones horizontalmente --> */}
@@ -213,7 +213,7 @@ export default function HomeComponent() {
                         hind.className
                       }`}
                     >
-                       {translations[language].home.projects_button}
+                      {translations[language].home.projects_button}
                     </a>
                     <a
                       href="cv_alian.pdf"
@@ -225,7 +225,7 @@ export default function HomeComponent() {
                       }`}
                     >
                       <span className="flex items-center text-xs">
-                      {translations[language].home.resume_button}
+                        {translations[language].home.resume_button}
                         <HiArrowCircleDown className="ml-2" />
                       </span>
                     </a>
@@ -239,23 +239,25 @@ export default function HomeComponent() {
                   isLoadedProfilePic ? "active" : ""
                 } container m-auto`}
               >
+                <h1 className="sr-only">Alian Andahur</h1>{" "}
+                {/* Texto oculto pero presente para SEO */}
                 <img
-                  src="/perfil3_11.webp"
+                  src="/AliBlackFormal.webp"
                   decoding="async"
-                  alt="profile pics"
-                  className="w-full h-auto mt-[-150px]"
+                  alt="Alian Andahur"
+                  className="w-full h-auto mt-[-100px]"
                   style={{
                     WebKitMaskImage: "linear-gradient(black, transparent)",
                     maskImage: "linear-gradient(black 50%, transparent)",
                   }}
-                ></img>
+                />
               </div>
             </div>
           </div>
           <div className="container m-auto absolute">
             <div className={`fade-in ${isLoadedSlider ? "active" : ""} px-3`}>
               <div
-                className="relative max-w-sm bottom-[70px] lg:bottom-[132px] md:max-w-5xl xl:max-w-6x1 px-5 lg:px-14 overflow-auto mx-auto bg-white rounded-2xl z-20"
+                className="relative max-w-sm bottom-[30px] lg:bottom-[90px] md:max-w-5xl xl:max-w-6x1 px-5 lg:px-14 overflow-auto mx-auto bg-white rounded-2xl z-20"
                 style={{
                   boxShadow: "-8px -8px 8px #00bcd4, 8px 8px 8px #e91e63",
                 }}
