@@ -242,7 +242,7 @@ export default function HomeComponent() {
                 <h1 className="sr-only">Alian Andahur</h1>{" "}
                 {/* Texto oculto pero presente para SEO */}
                 <img
-                  src="/AliBlackFormal.webp"
+                  src="/AliBlackFormal_2.webp"
                   decoding="async"
                   alt="Alian Andahur"
                   className="w-full h-auto mt-[-100px]"
