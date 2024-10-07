@@ -355,6 +355,7 @@ import Testimonials from "@/app/components/Testimonial/Testimonials";
 import translations from "../../translations.json"; // Importar el archivo de traducciones
 import { useLanguage } from "../../Context/LanguageContext";
 import { AboutData, DataArray } from "@/app/data";
+import CountryVisitorsChart from "@/app/components/CountryVisitorChart/CountryVisitorChart";
 
 // Registrar el locale inglés para i18n-iso-countries
 countries.registerLocale(enLocale);
@@ -489,6 +490,11 @@ export default function Index({ id }) {
                   </Card1>
                 </div>
               </div>
+
+              <div className="lg:pl-[50px]"> 
+                <CountryVisitorsChart/>
+              </div>
+
             </div>
           )}
 
