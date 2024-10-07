@@ -100,7 +100,7 @@ const CountryVisitorsChart = () => {
     layout: {
       padding: {
         left: 20,
-        right: 20, // Ajustar el padding a la derecha
+        right: 20,
         top: 20,
         bottom: 20,
       },
@@ -112,10 +112,7 @@ const CountryVisitorsChart = () => {
       style={{
         maxWidth: "700px", // Ancho máximo para pantallas grandes
         margin: "0 auto",
-        backgroundColor: "white",
         padding: "20px",
-        borderRadius: "8px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
         width: "90%", // Ancho general en pantallas grandes
       }}
     >
@@ -123,6 +120,10 @@ const CountryVisitorsChart = () => {
         style={{
           height: "400px", // Altura para pantallas grandes
           width: "100%", // Ancho completo en pantallas grandes
+          backgroundColor: "white",
+          borderWidth: "10px",
+          borderRadius: "15px",
+          overflow: "hidden"
         }}
       >
         <Bar data={data} options={options} />
