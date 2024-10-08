@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
@@ -24,6 +24,8 @@ ChartJS.register(
 
 const CountryVisitorsChart = () => {
   const [countryData, setCountryData] = useState([]);
+  const chartRef = useRef(null); // Referencia al gráfico
+  const [currentIndex, setCurrentIndex] = useState(0); // Índice del tooltip actual
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(firestore, "countries"), (snapshot) => {
@@ -38,6 +40,15 @@ const CountryVisitorsChart = () => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    // Configurar el intervalo para mostrar el tooltip
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % countryData.length);
+    }, 2000); // Cambiar cada 2 segundos
+
+    return () => clearInterval(interval);
+  }, [countryData]);
 
   const formatCountryName = (country) => {
     switch (country) {
@@ -56,7 +67,7 @@ const CountryVisitorsChart = () => {
     labels: countryData.map((country) => formatCountryName(country.country)),
     datasets: [
       {
-        label: "Porcentaje de visitas",
+        label: "Countries Percentage",
         data: countryData.map((country) => (country.count / totalVisits) * 100),
         backgroundColor: "rgba(75, 192, 192, 0.6)",
         borderColor: "rgba(75, 192, 192, 1)",
@@ -74,6 +85,13 @@ const CountryVisitorsChart = () => {
         ticks: {
           callback: function (value) {
             return `${value}%`;
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            weight: "bold", // Hacer el texto de los países en negrita
           },
         },
       },
@@ -105,7 +123,25 @@ const CountryVisitorsChart = () => {
         bottom: 20,
       },
     },
+    onClick: (e) => {
+      // Código para gestionar clics en el gráfico
+    },
   };
+
+  useEffect(() => {
+    const chart = chartRef.current; // Referencia al gráfico
+    if (chart && countryData.length > 0) {
+      // Activar el tooltip correspondiente al índice actual
+      chart.tooltip.setActiveElements([
+        {
+          datasetIndex: 0,
+          index: currentIndex,
+        },
+      ]);
+      chart.tooltip.update();
+      chart.update();
+    }
+  }, [currentIndex, countryData]);
 
   return (
     <div
@@ -123,19 +159,20 @@ const CountryVisitorsChart = () => {
           backgroundColor: "white",
           borderWidth: "10px",
           borderRadius: "15px",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
-        <Bar data={data} options={options} />
+        <Bar ref={chartRef} data={data} options={options} />
       </div>
 
       <style jsx>{`
         @media (max-width: 600px) {
           div {
             max-width: 100%;
-            width: calc(100% - 20px); /* Ajustar al ancho de la card */
+            width: calc(100% - 10px); /* Ajustar al ancho de la card */
             margin-right: 0;
             padding: 10px; /* Reducir padding en pantallas pequeñas */
+            margin-left: -20px; /* Mover un poco hacia la izquierda */
           }
         }
       `}</style>

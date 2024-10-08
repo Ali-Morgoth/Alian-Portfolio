@@ -489,6 +489,7 @@ export default function Index({ id }) {
                     </div>
                   </Card1>
                 </div>
+                
               </div>
 
               <div className="lg:pl-[50px]"> 
