@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react"; 
 import { Bar } from "react-chartjs-2";
 import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
@@ -22,20 +22,21 @@ ChartJS.register(
   Legend
 );
 
-const CountryVisitorsChart = () => {
-  const [countryData, setCountryData] = useState([]);
+const CityVisitorsChart = () => {
+  const [cityData, setCityData] = useState([]);
   const chartRef = useRef(null); // Referencia al gráfico
   const [currentIndex, setCurrentIndex] = useState(0); // Índice del tooltip actual
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(firestore, "countries"), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(firestore, "cities"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
-        country: doc.data().country,
+        city: doc.data().city,
         count: doc.data().count,
+        country: doc.data().country, // Si es necesario para mostrar el país
       }));
 
       data.sort((a, b) => b.count - a.count);
-      setCountryData(data);
+      setCityData(data);
     });
 
     return () => unsubscribe();
@@ -44,33 +45,33 @@ const CountryVisitorsChart = () => {
   useEffect(() => {
     // Configurar el intervalo para mostrar el tooltip
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % countryData.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cityData.length);
     }, 2000); // Cambiar cada 2 segundos
 
     return () => clearInterval(interval);
-  }, [countryData]);
+  }, [cityData]);
 
-  const formatCountryName = (country) => {
-    switch (country) {
-      case "United States of America":
-        return "USA";
-      case "Russian Federation":
-        return "Russia";
+  const formatCityName = (city) => {
+    switch (city) {
+      case "New York":
+        return "NYC";
+      case "Los Angeles":
+        return "LA";
       default:
-        return country;
+        return city;
     }
   };
 
-  const totalVisits = countryData.reduce((sum, country) => sum + country.count, 0);
+  const totalVisits = cityData.reduce((sum, city) => sum + city.count, 0);
 
   const data = {
-    labels: countryData.map((country) => formatCountryName(country.country)),
+    labels: cityData.map((city) => formatCityName(city.city)),
     datasets: [
       {
-        label: "Countries Percentage",
-        data: countryData.map((country) => (country.count / totalVisits) * 100),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        label: "Cities Percentage",
+        data: cityData.map((city) => (city.count / totalVisits) * 100),
+        backgroundColor: "rgba(153, 102, 255, 0.6)",
+        borderColor: "rgba(153, 102, 255, 1)",
         borderWidth: 1,
       },
     ],
@@ -91,7 +92,7 @@ const CountryVisitorsChart = () => {
       y: {
         ticks: {
           font: {
-            weight: "bold", // Hacer el texto de los países en negrita
+            weight: "bold", // Hacer el texto de las ciudades en negrita
           },
         },
       },
@@ -104,7 +105,7 @@ const CountryVisitorsChart = () => {
       },
       title: {
         display: true,
-        text: "Porcentaje de visitas por país",
+        text: "Porcentaje de visitas por ciudad",
       },
       tooltip: {
         callbacks: {
@@ -130,7 +131,7 @@ const CountryVisitorsChart = () => {
 
   useEffect(() => {
     const chart = chartRef.current; // Referencia al gráfico
-    if (chart && countryData.length > 0) {
+    if (chart && cityData.length > 0) {
       // Activar el tooltip correspondiente al índice actual
       chart.tooltip.setActiveElements([
         {
@@ -141,10 +142,10 @@ const CountryVisitorsChart = () => {
       chart.tooltip.update();
       chart.update();
     }
-  }, [currentIndex, countryData]);
+  }, [currentIndex, cityData]);
 
-  // Definir altura dinámica del gráfico basado en el número de países
-  const chartHeight = countryData.length * 50; // 50px por país, ajustable según tu diseño
+  // Definir altura dinámica del gráfico basado en el número de ciudades
+  const chartHeight = cityData.length * 50; // 50px por ciudad, ajustable según tu diseño
 
   return (
     <div
@@ -157,7 +158,7 @@ const CountryVisitorsChart = () => {
     >
       <div
         style={{
-          height: `${chartHeight}px`, // Altura dinámica basada en el número de países
+          height: `${chartHeight}px`, // Altura dinámica basada en el número de ciudades
           width: "100%", // Ancho completo en pantallas grandes
           backgroundColor: "white",
           borderWidth: "10px",
@@ -183,4 +184,4 @@ const CountryVisitorsChart = () => {
   );
 };
 
-export default CountryVisitorsChart;
+export default CityVisitorsChart;

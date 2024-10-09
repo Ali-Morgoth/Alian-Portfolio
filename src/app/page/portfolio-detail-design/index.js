@@ -356,6 +356,7 @@ import translations from "../../translations.json"; // Importar el archivo de tr
 import { useLanguage } from "../../Context/LanguageContext";
 import { AboutData, DataArray } from "@/app/data";
 import CountryVisitorsChart from "@/app/components/CountryVisitorChart/CountryVisitorChart";
+import CityVisitorsChart from "@/app/components/CityVisitorChart/CityVisitorChart";
 
 // Registrar el locale inglés para i18n-iso-countries
 countries.registerLocale(enLocale);
@@ -494,6 +495,9 @@ export default function Index({ id }) {
 
               <div className="lg:pl-[50px]"> 
                 <CountryVisitorsChart/>
+              </div>
+              <div className="lg:pl-[50px]"> 
+                <CityVisitorsChart/>
               </div>
 
             </div>
