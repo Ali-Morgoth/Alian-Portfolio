@@ -16,7 +16,7 @@ const Card1 = ({ children }) => {
         </div>
         <div className="terminal-body">
           <div className="terminal-loader">
-            <span className="loader-text">Geolocation inicialized</span>
+            <span className="loader-text">Geolocation initialized</span>
             <span id="dot1" className="dot">.</span>
             <span id="dot2" className="dot">.</span>
             <span id="dot3" className="dot">.</span>
@@ -27,7 +27,6 @@ const Card1 = ({ children }) => {
       <div className="heading">
         {children}
       </div>
-    
 
       {/* Estilos CSS */}
       <style jsx>{`
@@ -48,19 +47,29 @@ const Card1 = ({ children }) => {
           overflow: hidden;
           z-index: 1;
           row-gap: 1em;
+          margin: auto; /* Centrará horizontalmente la tarjeta */
+        }
+
+        @media (max-width: 768px) {
+          /* Para pantallas pequeñas */
+          .card {
+            width: 90%; /* Ajuste al ancho de la pantalla */
+            height: auto; /* Permite que la altura sea dinámica */
+            margin: auto; /* Centra la tarjeta */
+            padding: 1em; /* Reduce el padding en pantallas pequeñas */
+          }
         }
 
         .terminal {
-          width: 19em; /* Ajuste el tamaño según sea necesario */
+          width: 19em;
           background-color: #000;
           color: #0f0;
           font-family: "Courier New", Courier, monospace;
           border-radius: 8px;
           overflow: hidden;
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-           min-height: 5em;
-           margin-top: 10px;
-          
+          min-height: 5em;
+          margin-top: 10px;
         }
 
         .terminal-header {
@@ -110,7 +119,6 @@ const Card1 = ({ children }) => {
 
         .loader-text {
           margin-right: 5px;
-       
         }
 
         .dot {

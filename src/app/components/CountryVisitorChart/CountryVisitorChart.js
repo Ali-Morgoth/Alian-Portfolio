@@ -149,10 +149,10 @@ const CountryVisitorsChart = () => {
   return (
     <div
       style={{
-        maxWidth: "700px", // Ancho máximo para pantallas grandes
+        maxWidth: window.innerWidth < 600 ? "100%" : "700px", // Ajusta el ancho para pantallas pequeñas
         margin: "0 auto",
         padding: "20px",
-        width: "90%", // Ancho general en pantallas grandes
+        width: "100%", // Asegúrate de que el contenedor use todo el ancho disponible
       }}
     >
       <div
@@ -175,7 +175,7 @@ const CountryVisitorsChart = () => {
             width: calc(100% - 10px); /* Ajustar al ancho de la card */
             margin-right: 0;
             padding: 10px; /* Reducir padding en pantallas pequeñas */
-            margin-left: -20px; /* Mover un poco hacia la izquierda */
+             margin-left: 1px; /* Mover un poco hacia la izquierda */
           }
         }
       `}</style>

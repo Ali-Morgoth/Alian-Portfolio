@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"; 
+import React, { useEffect, useState, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
@@ -28,16 +28,19 @@ const CityVisitorsChart = () => {
   const [currentIndex, setCurrentIndex] = useState(0); // Índice del tooltip actual
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(firestore, "cities"), (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        city: doc.data().city,
-        count: doc.data().count,
-        country: doc.data().country, // Si es necesario para mostrar el país
-      }));
+    const unsubscribe = onSnapshot(
+      collection(firestore, "cities"),
+      (snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          city: doc.data().city,
+          count: doc.data().count,
+          country: doc.data().country, // Si es necesario para mostrar el país
+        }));
 
-      data.sort((a, b) => b.count - a.count);
-      setCityData(data);
-    });
+        data.sort((a, b) => b.count - a.count);
+        setCityData(data);
+      }
+    );
 
     return () => unsubscribe();
   }, []);
@@ -150,10 +153,10 @@ const CityVisitorsChart = () => {
   return (
     <div
       style={{
-        maxWidth: "700px", // Ancho máximo para pantallas grandes
+        maxWidth: window.innerWidth < 600 ? "100%" : "700px", // Ajusta el ancho para pantallas pequeñas
         margin: "0 auto",
         padding: "20px",
-        width: "90%", // Ancho general en pantallas grandes
+        width: "100%", // Asegúrate de que el contenedor use todo el ancho disponible
       }}
     >
       <div
@@ -176,7 +179,7 @@ const CityVisitorsChart = () => {
             width: calc(100% - 10px); /* Ajustar al ancho de la card */
             margin-right: 0;
             padding: 10px; /* Reducir padding en pantallas pequeñas */
-            margin-left: -20px; /* Mover un poco hacia la izquierda */
+            margin-left: 1px; /* Mover un poco hacia la izquierda */
           }
         }
       `}</style>

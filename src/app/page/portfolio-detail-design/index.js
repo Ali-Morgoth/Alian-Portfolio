@@ -485,8 +485,8 @@ export default function Index({ id }) {
 
                 <div className="m-4 md:pt-8">
                   <Card1>
-                    <div className="">
-                      <CitiesList />
+                    <div>
+                      <CitiesList/>
                     </div>
                   </Card1>
                 </div>
