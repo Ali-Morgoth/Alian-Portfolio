@@ -151,6 +151,20 @@ export default function HomeComponent() {
     }, 1500);
   }, []);
 
+
+   // ✅ Manejar confirmación y descarga del CV
+   const handleDownload = () => {
+    const confirmDownload = window.confirm("¿Quieres descargar este archivo?");
+    if (confirmDownload) {
+      const link = document.createElement("a");
+      link.href = "cv_alian.pdf";
+      link.download = "cv_alian.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <React.Fragment>
       <div
@@ -215,9 +229,8 @@ export default function HomeComponent() {
                     >
                       {translations[language].home.projects_button}
                     </a>
-                    <a
-                      href="cv_alian.pdf"
-                      download="cv_alian.pdf"
+                    <button
+                      onClick={handleDownload}
                       className={`fade-in ${
                         isLoadedBtn2 ? "active" : ""
                       } cursor-pointer inline-block bg-[#e91e63] transition-all duration-300 ease-in-out rounded-lg text-white py-3 px-8 lg:px-10 font-bold uppercase md:py-2 lg:py-3 md:text-xs lg:text-base hover:bg-[#000000] hover:show-lg transform hover:translate-y-1 button ${
@@ -228,7 +241,7 @@ export default function HomeComponent() {
                         {translations[language].home.resume_button}
                         <HiArrowCircleDown className="ml-2" />
                       </span>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
